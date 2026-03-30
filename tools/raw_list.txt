@@ -1,0 +1,1085 @@
+	Nymble	Phantasmal Flames
+9 / 94 	
+50HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Helioptile	Mega Evolution
+52 / 132 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Durant	White Flare
+70 / 86 	
+HP 
+Weakness	Resistance	Retreat Cost
+x2	 -30	
+	Klinklang	Black Bolt
+141 / 86 	
+HP 
+Weakness	Resistance	Retreat Cost
+x2	 -30	
+	Smoliv	Destined Rivals
+21 / 182 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Karrablast	Journey Together
+9 / 159 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Applin	Surging Sparks
+138 / 191 	
+40HP 
+Weakness	Resistance	Retreat Cost
+ 	 	
+	Chewtle	Stellar Crown
+43 / 142 	
+80HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Meltan	Stellar Crown
+102 / 142 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 -30	
+	Froakie	Twilight Masquerade
+56 / 167 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Minccino	Temporal Forces
+136 / 162 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Octillery	Paradox Rift
+34 / 182 	
+110HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Toxel	Paradox Rift
+69 / 182 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Aipom	Paradox Rift
+211 / 182 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Magnemite	151
+81 / 165 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Magneton	151
+82 / 165 	
+90HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Larvesta	Obsidian Flames
+40 / 197 	
+80HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Clefairy	Obsidian Flames
+81 / 197 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Sinistea	Obsidian Flames
+97 / 197 	
+30HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Lillipup	Obsidian Flames
+170 / 197 	
+50HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Pincurchin	Paldea Evolved
+72 / 198 	
+80HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Stonjourner	Scarlet Violet
+121 / 198 	
+130HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Starly	Scarlet Violet
+148 / 198 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 -30	
+	Pawniard	Crown Zenith
+92 / 159 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 -30	
+	Drapion V	Crown Zenith
+GG49 / GG70 	
+210HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Baltoy	Silver Tempest
+93 / 195 	
+50HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Seedot	Lost Origin
+11 / 196 	
+50HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Litwick	Lost Origin
+24 / 196 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Ducklett	Lost Origin
+46 / 196 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 -30	
+	Machop	Lost Origin
+86 / 196 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Murkrow	Lost Origin
+114 / 196 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 -20	
+	Spinarak	Pokemon GO
+6 / 78 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Shieldon	Astral Radiance
+109 / 189 	
+100HP 
+Weakness	Resistance	Retreat Cost
+x2	 -30	
+	Wormadam	Brilliant Stars
+10 / 172 	
+110HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Staryu	Brilliant Stars
+30 / 172 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Snom	Fusion Strike
+84 / 264 	
+40HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Tynamo	Fusion Strike
+95 / 264 	
+40HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Sandshrew	Fusion Strike
+131 / 264 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Woobat	Evolving Skies
+68 / 225 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 -30	
+	Pumpkaboo	Evolving Skies
+76 / 225 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 -30	
+	Castform Sunny Form	Chilling Reign
+22 / 198 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Clobbopus	Chilling Reign
+91 / 198 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Salandit	Battle Styles
+27 / 163 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Sizzlipede	Battle Styles
+29 / 163 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Dedenne	Vivid Voltage
+77 / 180 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Drilbur	Vivid Voltage
+91 / 180 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Taillow	Vivid Voltage
+133 / 180 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 -30	
+	Weedle	Champion's Path
+2 / 70 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Bounsweet	Darkness Ablaze
+14 / 189 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Torchic	Darkness Ablaze
+22 / 189 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Sandygast	Rebel Clash
+81 / 192 	
+80HP 
+Weakness	Resistance	Retreat Cost
+x2	 -30	
+	Bunnelby	Rebel Clash
+146 / 192 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Ferroseed	Sword Shield
+130 / 202 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 -30	
+	Venusaur & Snivy GX	SM Promos
+SM229 	
+270HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Rowlet	Cosmic Eclipse
+17 / 236 	
+50HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Mimikyu	Cosmic Eclipse
+97 / 236 	
+70HP 
+Weakness	Resistance	Retreat Cost
+ 	 	
+	Fomantis	Unified Minds
+15 / 236 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Relicanth	Unified Minds
+111 / 236 	
+90HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Venonat	Unbroken Bonds
+10 / 214 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Grubbin	Unbroken Bonds
+18 / 214 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Darumaka	Unbroken Bonds
+23 / 214 	
+80HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Sandile	Unbroken Bonds
+113 / 214 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Kakuna	Team Up
+4 / 181 	
+80HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Alolan Geodude	Team Up
+35 / 181 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Joltik	Team Up
+47 / 181 	
+40HP 
+Weakness	Resistance	Retreat Cost
+x2	 -20	
+	Pancham	Team Up
+81 / 181 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Pachirisu	Lost Thunder
+80 / 214 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 -20	
+	Pupitar	Lost Thunder
+116 / 214 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Alolan Dugtrio	Lost Thunder
+123 / 214 	
+90HP 
+Weakness	Resistance	Retreat Cost
+x2	 -20	
+	Ralts	Lost Thunder
+139 / 214 	
+50HP 
+Weakness	Resistance	Retreat Cost
+x2	 -20	
+	Shelgon	Dragon Majesty
+43 / 70 	
+80HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Gulpin	Celestial Storm
+57 / 168 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Swalot	Celestial Storm
+58 / 168 	
+120HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Exeggcute	Forbidden Light
+1 / 131 	
+40HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Litleo	Forbidden Light
+18 / 131 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Binacle	Forbidden Light
+66 / 131 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Starmie	Crimson Invasion
+16 / 111 	
+90HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Primeape	Crimson Invasion
+51 / 111 	
+90HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Trubbish	Guardians Rising
+50 / 145 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Gothita	Guardians Rising
+52 / 145 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Metapod	Sun Moon
+2 / 149 	
+80HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Foongus	Steam Siege
+12 / 114 	
+40HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Carbink	Fates Collide
+49 / 124 	
+80HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Swirlix	Generations
+RC19 / RC32 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 -20	
+	Nuzleaf	BREAKPoint
+72 / 122 	
+80HP 
+Weakness	Resistance	Retreat Cost
+x2	 -20	
+	Cacnea	BREAKThrough
+4 / 162 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Snubbull	BREAKThrough
+98 / 162 	
+70HP 
+Weakness	Resistance	Retreat Cost
+x2	 -20	
+	Beldum	Ancient Origins
+47 / 98 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 -20	
+	Dunsparce	Roaring Skies
+68 / 108 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Hippopotas	Primal Clash
+87 / 160 	
+90HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Skitty	Primal Clash
+113 / 160 	
+50HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Sewaddle	Legendary Treasures
+9 / 113 	
+50HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Stunfisk	Legendary Treasures
+83 / 113 	
+100HP 
+Weakness	Resistance	Retreat Cost
+x2	 -20	
+	Bronzong	Triumphant
+15 / 102 	
+90HP 
+Weakness	Resistance	Retreat Cost
+x2	 -20	
+	Bronzor	Triumphant
+58 / 102 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 -20	
+	Magcargo	Undaunted
+6 / 90 	
+100HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Slugma	Undaunted
+67 / 90 	
+60HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Wobbuffet	HeartGold SoulSilver
+13 / 123 	
+90HP 
+Weakness	Resistance	Retreat Cost
+x2	 	
+	Ledian	HeartGold SoulSilver
+25 / 123 	
+80HP 
+Weakness	Resistance	Retreat Cost
+x2	 -20	
+	Sunflora	HeartGold SoulSilver
+31 / 123 	
+80HP 
+Weakness	Resistance	Retreat Cost
+x2	 -20	
+	Ledyba	HeartGold SoulSilver
+71 / 123 	
+50HP 
+Weakness	Resistance	Retreat Cost
+x2	 -20	
+	Sunkern	HeartGold SoulSilver
+85 / 123 	
+40HP 
+Weakness	Resistance	Retreat Cost
+x2	 -20	
+	Squirtle	DPt-P
+9 / DPt-P 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Bulbasaur	DPt-P
+30 / DPt-P 	
+50HP 
+Weakness	Resistance	Retreat Cost
++10	 	
+	Cherubi	Arceus
+60 / 99 	
+50HP 
+Weakness	Resistance	Retreat Cost
++10	 -20	
+	Snorunt	Arceus
+75 / 99 	
+50HP 
+Weakness	Resistance	Retreat Cost
++10	 	
+	Minun	Supreme Victors
+71 / 147 	
+60HP 
+Weakness	Resistance	Retreat Cost
++10	 -20	
+	Plusle	Supreme Victors
+76 / 147 	
+60HP 
+Weakness	Resistance	Retreat Cost
++10	 -20	
+	Shroomish	Supreme Victors
+127 / 147 	
+60HP 
+Weakness	Resistance	Retreat Cost
++10	 -20	
+	Whismur	Supreme Victors
+132 / 147 	
+60HP 
+Weakness	Resistance	Retreat Cost
++10	 	
+	Lickitung	Platinum
+80 / 127 	
+90HP 
+Weakness	Resistance	Retreat Cost
++20	 	
+	Mareep	Platinum
+82 / 127 	
+60HP 
+Weakness	Resistance	Retreat Cost
++10	 -20	
+	Wurmple	Platinum
+103 / 127 	
+50HP 
+Weakness	Resistance	Retreat Cost
++10	 	
+	Pikachu	DP-P Promos
+98 / DP-P 	
+60HP 
+Weakness	Resistance	Retreat Cost
++10	 -20	
+	Pikachu	DP-P Promos
+99 / DP-P 	
+60HP 
+Weakness	Resistance	Retreat Cost
++10	 -20	
+	Pikachu	DP-P Promos
+100 / DP-P 	
+60HP 
+Weakness	Resistance	Retreat Cost
++10	 -20	
+	Pikachu	DP-P Promos
+101 / DP-P 	
+60HP 
+Weakness	Resistance	Retreat Cost
++10	 -20	
+	Pikachu	DP-P Promos
+102 / DP-P 	
+60HP 
+Weakness	Resistance	Retreat Cost
++10	 -20	
+	Charmander	DP-P Promos
+124 / DP-P 	
+50HP 
+Weakness	Resistance	Retreat Cost
++10	 	
+	Budew	Stormfront
+33 / 100 	
+40HP 
+Weakness	Resistance	Retreat Cost
++10	 	
+	Bidoof	Stormfront
+54 / 100 	
+60HP 
+Weakness	Resistance	Retreat Cost
++10	 	
+	Larvitar	Stormfront
+63 / 100 	
+50HP 
+Weakness	Resistance	Retreat Cost
++10	 -20	
+	Happiny	POP Series 8
+14 / 17 	
+60HP 
+Weakness	Resistance	Retreat Cost
++10	 	
+	Happiny	Mysterious Treasures
+52 / 123 	
+60HP 
+Weakness	Resistance	Retreat Cost
++10	 	
+	Aron	Mysterious Treasures
+71 / 123 	
+50HP 
+Weakness	Resistance	Retreat Cost
++10	 -20	
+	Pichu	Mysterious Treasures
+93 / 123 	
+40HP 
+Weakness	Resistance	Retreat Cost
++10	 -20	
+	Slakoth	Mysterious Treasures
+99 / 123 	
+50HP 
+Weakness	Resistance	Retreat Cost
++10	 	
+	Teddiursa	Mysterious Treasures
+105 / 123 	
+60HP 
+Weakness	Resistance	Retreat Cost
++10	 	
+	Treecko	PCG Promos
+37 / PCG-P 	
+40HP 
+Weakness	Resistance	Retreat Cost
+	 -30	
+	Croconaw δ	EX Dragon Frontiers
+27 / 101 	
+70HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Flaaffy δ	EX Dragon Frontiers
+30 / 101 	
+70HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Chikorita δ	EX Dragon Frontiers
+44 / 101 	
+40HP 
+Weakness	Resistance	Retreat Cost
+	 -30	
+	Ekans δ	EX Dragon Frontiers
+47 / 101 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Ditto	POP Series 3
+12 / 17 	
+60HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Magby	EX Legend Maker
+58 / 92 	
+40HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Seedot	EX Legend Maker
+61 / 92 	
+40HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Wynaut	EX Legend Maker
+71 / 92 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Ditto	EX Delta Species
+35 / 113 	
+60HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Ditto	EX Delta Species
+36 / 113 	
+60HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Ditto	EX Delta Species
+37 / 113 	
+60HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Ditto	EX Delta Species
+38 / 113 	
+60HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Ditto	EX Delta Species
+39 / 113 	
+60HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Ditto	EX Delta Species
+40 / 113 	
+60HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Ditto	EX Delta Species
+61 / 113 	
+60HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Ditto	EX Delta Species
+62 / 113 	
+60HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Ditto	EX Delta Species
+63 / 113 	
+60HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Ditto	EX Delta Species
+64 / 113 	
+60HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Pikachu	POP Series 2
+16 / 17 	
+40HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Cleffa	EX Unseen Forces
+21 / 115 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Elekid	EX Unseen Forces
+23 / 115 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Smoochum	EX Unseen Forces
+31 / 115 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Tyrogue	EX Unseen Forces
+33 / 115 	
+40HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Claydol	EX Emerald
+24 / 106 	
+80HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Linoone	EX Emerald
+34 / 106 	
+70HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Baltoy	EX Emerald
+43 / 106 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Zigzagoon	EX Emerald
+74 / 106 	
+40HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Xatu	EX Deoxys
+29 / 107 	
+70HP 
+Weakness	Resistance	Retreat Cost
+	 -30	
+	Donphan	EX Deoxys
+30 / 107 	
+80HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Natu	EX Deoxys
+66 / 107 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Phanpy	EX Deoxys
+69 / 107 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Delibird	EX Team Rocket Returns
+21 / 109 	
+70HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Furret	EX Team Rocket Returns
+22 / 109 	
+80HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Sentret	EX Team Rocket Returns
+75 / 109 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Spinarak	EX Team Rocket Returns
+78 / 109 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Slowbro	EX FireRed and Leaf Green
+14 / 112 	
+60HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Tangela	EX FireRed and Leaf Green
+30 / 112 	
+60HP 
+Weakness	Resistance	Retreat Cost
+	 -30	
+	Parasect	EX FireRed and Leaf Green
+43 / 112 	
+70HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Paras	EX FireRed and Leaf Green
+72 / 112 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Slowpoke	EX FireRed and Leaf Green
+80 / 112 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Bellossom	EX Hidden Legends
+16 / 101 	
+100HP 
+Weakness	Resistance	Retreat Cost
+	 -30	
+	Gloom	EX Hidden Legends
+35 / 101 	
+70HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Swalot	EX Hidden Legends
+50 / 101 	
+80HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Gulpin	EX Hidden Legends
+62 / 101 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Oddish	EX Hidden Legends
+68 / 101 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Shelgon	EX Dragon
+41 / 97 	
+70HP 
+Weakness	Resistance	Retreat Cost
+ 	 	
+	Grimer	EX Dragon
+57 / 97 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Numel	EX Dragon
+69 / 97 	
+40HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Trapinch	EX Dragon
+78 / 97 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Piloswine	Skyridge
+24 / 144 	
+90HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Raichu	Skyridge
+27 / 144 	
+80HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Dunsparce	Skyridge
+53 / 144 	
+40HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Pikachu	Skyridge
+84 / 144 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Swinub	Skyridge
+107 / 144 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Jumpluff	Aquapolis
+17 / 147 	
+70HP 
+Weakness	Resistance	Retreat Cost
+	 -30	
+	Lanturn	Aquapolis
+21 / 147 	
+80HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Skiploom	Aquapolis
+60 / 147 	
+60HP 
+Weakness	Resistance	Retreat Cost
+	 -30	
+	Chinchou	Aquapolis
+70 / 147 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Hoppip	Aquapolis
+83 / 147 	
+40HP 
+Weakness	Resistance	Retreat Cost
+	 -30	
+	Lickitung	Aquapolis
+90 / 147 	
+80HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Poliwrath	Expedition
+24 / 165 	
+100HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Poliwrath	Expedition
+60 / 165 	
+100HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Poliwhirl	Expedition
+89 / 165 	
+70HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Poliwag	Expedition
+125 / 165 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Rattata	Expedition
+128 / 165 	
+30HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Squirtle	Expedition
+131 / 165 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Vulpix	Expedition
+136 / 165 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Bruno's Machamp	VS
+81 / 141 	
+80HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Bruno's Hitmonlee	VS
+82 / 141 	
+60HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Bruno's Hitmonchan	VS
+83 / 141 	
+60HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Bruno's Steelix	VS
+84 / 141 	
+80HP 
+Weakness	Resistance	Retreat Cost
+	 -30	
+	Bruno's Ursaring	VS
+85 / 141 	
+60HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Bruno's Hitmontop	VS
+86 / 141 	
+60HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Light Azumarill	Neo Destiny
+13 / 105 	
+80HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Chansey	Neo Destiny
+31 / 105 	
+90HP 
+Weakness	Resistance	Retreat Cost
+	 -30	
+	Jigglypuff	Neo Destiny
+44 / 105 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 -30	
+	Togepi	Neo Destiny
+56 / 105 	
+40HP 
+Weakness	Resistance	Retreat Cost
+ 	 -30	
+	Dratini	Neo Destiny
+63 / 105 	
+40HP 
+Weakness	Resistance	Retreat Cost
+ 	 -30	
+	Girafarig	Neo Destiny
+66 / 105 	
+60HP 
+Weakness	Resistance	Retreat Cost
+ 	 	
+	Psyduck	Neo Destiny
+79 / 105 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Blissey	Neo Revelation
+2 / 64 	
+120HP 
+Weakness	Resistance	Retreat Cost
+	 -30	
+	Goldeen	Neo Revelation
+45 / 64 	
+40HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Quagsire	Neo Revelation
+48 / 64 	
+70HP 
+Weakness	Resistance	Retreat Cost
+	 -30	
+	Shuckle	Neo Revelation
+51 / 64 	
+40HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Corsola	Neo Discovery
+37 / 75 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Caterpie	Neo Discovery
+53 / 75 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Kabuto	Neo Discovery
+56 / 75 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	
+	Omanyte	Neo Discovery
+60 / 75 	
+50HP 
+Weakness	Resistance	Retreat Cost
+	 	

@@ -12,6 +12,8 @@
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.1",
     "autoprefixer": "^10.4.27",
+    "axios": "^1.13.6",
+    "cheerio": "^1.2.0",
     "localforage": "^1.10.0",
     "lucide-react": "^0.577.0",
     "pokemontcgsdk": "^2.0.0",

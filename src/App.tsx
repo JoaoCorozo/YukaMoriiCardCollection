@@ -10,9 +10,10 @@ function App() {
   const [selectedCard, setSelectedCard] = useState<PokemonCard | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState<'all' | 'owned' | 'missing'>('all');
+  const [sortBy, setSortBy] = useState<'price-desc' | 'price-asc' | 'name-asc' | 'name-desc' | 'set-asc' | 'number-asc'>('price-desc');
 
   const filteredCards = useMemo(() => {
-    return cards.map(c => ({ ...c })).filter(card => {
+    let result = cards.map(c => ({ ...c })).filter(card => {
       const search = searchTerm.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
       const pokemonName = card.pokemon.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
       const setName = card.set.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -23,7 +24,21 @@ function App() {
       if (filter === 'missing') return matchesSearch && !card.owned;
       return matchesSearch;
     });
-  }, [cards, searchTerm, filter]);
+
+    result.sort((a, b) => {
+      switch (sortBy) {
+        case 'price-asc': return a.price - b.price;
+        case 'price-desc': return b.price - a.price;
+        case 'name-asc': return a.pokemon.localeCompare(b.pokemon);
+        case 'name-desc': return b.pokemon.localeCompare(a.pokemon);
+        case 'set-asc': return a.set.localeCompare(b.set) || a.number.localeCompare(b.number, undefined, { numeric: true });
+        case 'number-asc': return a.number.localeCompare(b.number, undefined, { numeric: true });
+        default: return 0;
+      }
+    });
+
+    return result;
+  }, [cards, searchTerm, filter, sortBy]);
 
   const stats = useMemo(() => {
     const total = cards.length;
@@ -92,17 +107,32 @@ function App() {
             </div>
           </div>
 
-          <div className="relative z-10 max-w-3xl mx-auto">
-            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-              <Search className="h-6 w-6 text-slate-400" />
+          <div className="relative z-10 max-w-3xl mx-auto flex flex-col sm:flex-row gap-2">
+            <div className="relative flex-1">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <Search className="h-6 w-6 text-slate-400" />
+              </div>
+              <input
+                type="text"
+                placeholder="Busca por nombre o set de expansión..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-12 pr-4 py-4 bg-white border-4 border-yellow-400 rounded-2xl text-slate-800 text-lg font-medium placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-yellow-300 focus:border-yellow-500 transition-all shadow-lg"
+              />
             </div>
-            <input
-              type="text"
-              placeholder="Busca por nombre o set de expansión..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 bg-white border-4 border-yellow-400 rounded-2xl text-slate-800 text-lg font-medium placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-yellow-300 focus:border-yellow-500 transition-all shadow-lg"
-            />
+            
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as any)}
+              className="px-4 py-4 bg-white border-4 border-yellow-400 rounded-2xl text-slate-800 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-yellow-300 focus:border-yellow-500 shadow-lg cursor-pointer"
+            >
+              <option value="price-desc">💰 Precio (Mayor a Menor)</option>
+              <option value="price-asc">💲 Precio (Menor a Mayor)</option>
+              <option value="name-asc">🔤 Nombre (A - Z)</option>
+              <option value="name-desc">🔤 Nombre (Z - A)</option>
+              <option value="set-asc">📦 Set / Expansión</option>
+              <option value="number-asc">🔢 Número de Carta</option>
+            </select>
           </div>
         </div>
       </header>
