@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import type { CollectionItem } from '../types/Collection';
-import { Library, Upload, Plus, ChevronRight, FolderPlus } from 'lucide-react';
+import { Library, Upload, Plus, ChevronRight, FolderPlus, Download } from 'lucide-react';
 
 interface DashboardProps {
     collections: CollectionItem[];
@@ -90,10 +90,18 @@ export const Dashboard: React.FC<DashboardProps> = ({ collections, onSelectColle
                         <button 
                             onClick={() => fileInputRef.current?.click()}
                             disabled={isImporting}
-                            className="w-full py-4 bg-white text-blue-800 font-bold rounded-2xl shadow-lg hover:scale-[1.02] transition-transform flex items-center justify-center gap-2"
+                            className="w-full py-4 bg-white text-blue-800 font-bold rounded-2xl shadow-lg hover:scale-[1.02] transition-transform flex items-center justify-center gap-2 mb-4"
                         >
                             {isImporting ? "Importando..." : "Subir Archivo Excel"}
                         </button>
+                        
+                        <a 
+                            href="/template_coleccion.xlsx" 
+                            download 
+                            className="text-center w-full block text-sm font-medium text-blue-200 hover:text-white flex items-center justify-center gap-1 transition-colors"
+                        >
+                            <Download size={14} /> Descargar Excel de ejemplo
+                        </a>
                     </div>
 
                     <div className="bg-gradient-to-br from-purple-500 to-fuchsia-600 p-8 rounded-3xl shadow-xl text-white flex-1 flex flex-col justify-center">

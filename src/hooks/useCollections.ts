@@ -16,26 +16,6 @@ const PREDEFINED_COLLECTIONS: CollectionItem[] = [
         ownedCards: 0,
         excelUrl: '/yuka_morii_cartas_Joao.xlsx',
         coverImageUrl: '/apple-touch-icon.png'
-    },
-    {
-        id: 'ken-sugimori',
-        title: 'Ken Sugimori (Sample)',
-        description: 'Muestra de cartas clásicas de Ken Sugimori',
-        type: 'official',
-        totalCards: 3,
-        ownedCards: 0,
-        excelUrl: '/ken_sugimori_cards.json',
-        coverImageUrl: 'https://assets.tcgdex.net/en/sv/sv3/4/high.webp'
-    },
-    {
-        id: 'promo-cards',
-        title: 'Black Star Promos (Sample)',
-        description: 'Muestra de Black Star Promos antiguas',
-        type: 'official',
-        totalCards: 2,
-        ownedCards: 0,
-        excelUrl: '/promo_cards.json',
-        coverImageUrl: 'https://assets.tcgdex.net/en/swsh/swsh1/1/high.webp'
     }
 ];
 
