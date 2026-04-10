@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg', 'yuka_morii_cartas_Joao.xlsx'],
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'pwa-192x192.png', 'pwa-512x512.png', 'yuka_morii_cartas_Joao.xlsx', 'ken_sugimori_cards.json', 'promo_cards.json'],
       manifest: {
         name: 'Yuka Morii Tracker',
         short_name: 'YukaTracker',

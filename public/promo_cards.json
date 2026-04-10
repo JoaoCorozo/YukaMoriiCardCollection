@@ -1,0 +1,26 @@
+[
+  {
+    "id": "promo-1",
+    "rank": 1,
+    "set": "Black Star Promos",
+    "pokemon": "Mew",
+    "number": "8",
+    "rarity": "Promo",
+    "variant": "Non-Holo",
+    "price": 25.00,
+    "owned": false,
+    "imageUrl": "https://assets.tcgdex.net/en/swsh/swsh1/1/high.webp"
+  },
+  {
+    "id": "promo-2",
+    "rank": 2,
+    "set": "Black Star Promos",
+    "pokemon": "Venusaur",
+    "number": "13",
+    "rarity": "Promo",
+    "variant": "Holo",
+    "price": 40.50,
+    "owned": false,
+    "imageUrl": "https://assets.tcgdex.net/en/swsh/swsh2/3/high.webp"
+  }
+]
