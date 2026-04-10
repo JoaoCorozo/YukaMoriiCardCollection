@@ -68,9 +68,9 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned }:
                             ) : (
                                 <div className="absolute inset-0 flex items-center justify-center bg-slate-100 group">
                                     <img 
-                                        src="/apple-touch-icon.png" 
-                                        alt="Sin imagen" 
-                                        className="w-32 h-32 opacity-20 grayscale"
+                                        src="/reverso.jpeg" 
+                                        alt="Reverso de carta" 
+                                        className="w-full h-full object-contain p-2 opacity-90"
                                         onError={(e) => e.currentTarget.style.display = 'none'}
                                     />
                                 </div>

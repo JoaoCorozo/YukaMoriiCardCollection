@@ -38,9 +38,9 @@ export const CardItem = ({ card, onClick, onToggleOwned }: CardItemProps) => {
                     />
                 ) : (
                     <img 
-                        src="/apple-touch-icon.png" 
-                        alt="Sin imagen" 
-                        className="w-16 h-16 object-contain opacity-20 grayscale group-hover:scale-110 transition-transform duration-500"
+                        src="/reverso.jpeg" 
+                        alt="Reverso de carta" 
+                        className="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500 shadow-sm opacity-90"
                         onError={(e) => e.currentTarget.style.display = 'none'}
                     />
                 )}
