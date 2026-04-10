@@ -3,10 +3,10 @@ import { usePokemonCards } from './hooks/usePokemonCards';
 import { CardItem } from './components/CardItem';
 import { CardDetailModal } from './components/CardDetailModal';
 import type { PokemonCard } from './types/PokemonCard';
-import { Search, Library, CheckCircle, XCircle, DollarSign, Loader, AlertTriangle } from 'lucide-react';
+import { Search, Library, CheckCircle, XCircle, DollarSign, Loader, AlertTriangle, RefreshCw } from 'lucide-react';
 
 function App() {
-  const { cards, loading, error, toggleOwnership, updateCardImage } = usePokemonCards();
+  const { cards, loading, error, toggleOwnership, updateCardImage, reloadDatabase } = usePokemonCards();
   const [selectedCard, setSelectedCard] = useState<PokemonCard | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState<'all' | 'owned' | 'missing'>('all');
@@ -85,24 +85,35 @@ function App() {
               Colección Yuka <span className="text-yellow-300">Morii</span>
             </h1>
 
-            <div className="flex bg-red-800/50 rounded-full p-1 border-2 border-red-500/50 shadow-inner backdrop-blur-sm">
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <div className="flex bg-red-800/50 rounded-full p-1 border-2 border-red-500/50 shadow-inner backdrop-blur-sm">
+                <button
+                  onClick={() => setFilter('all')}
+                  className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${filter === 'all' ? 'bg-white text-red-600 shadow-md scale-105' : 'text-white/80 hover:text-white hover:bg-white/10'}`}
+                >
+                  Todas
+                </button>
+                <button
+                  onClick={() => setFilter('owned')}
+                  className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${filter === 'owned' ? 'bg-green-400 text-green-950 shadow-md scale-105' : 'text-white/80 hover:text-white hover:bg-white/10'}`}
+                >
+                  Tengo
+                </button>
+                <button
+                  onClick={() => setFilter('missing')}
+                  className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${filter === 'missing' ? 'bg-slate-700 text-white shadow-md scale-105' : 'text-white/80 hover:text-white hover:bg-white/10'}`}
+                >
+                  Faltan
+                </button>
+              </div>
+
               <button
-                onClick={() => setFilter('all')}
-                className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${filter === 'all' ? 'bg-white text-red-600 shadow-md scale-105' : 'text-white/80 hover:text-white hover:bg-white/10'}`}
+                onClick={() => reloadDatabase()}
+                title="Sincronizar base de datos con el Excel"
+                className="flex items-center gap-2 px-4 py-2 bg-yellow-400 hover:bg-yellow-300 text-yellow-950 rounded-full font-bold shadow-md transition-all active:scale-95 border-2 border-yellow-500"
               >
-                Todas
-              </button>
-              <button
-                onClick={() => setFilter('owned')}
-                className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${filter === 'owned' ? 'bg-green-400 text-green-950 shadow-md scale-105' : 'text-white/80 hover:text-white hover:bg-white/10'}`}
-              >
-                Tengo
-              </button>
-              <button
-                onClick={() => setFilter('missing')}
-                className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${filter === 'missing' ? 'bg-slate-700 text-white shadow-md scale-105' : 'text-white/80 hover:text-white hover:bg-white/10'}`}
-              >
-                Faltan
+                <RefreshCw size={16} className={loading ? "animate-spin" : ""} />
+                Sincronizar
               </button>
             </div>
           </div>
