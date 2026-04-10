@@ -1,5 +1,5 @@
 import type { PokemonCard } from '../types/PokemonCard';
-import { Star, CheckCircle, Circle, ImagePlus } from 'lucide-react';
+import { Star, CheckCircle, Circle } from 'lucide-react';
 
 interface CardItemProps {
     card: PokemonCard;

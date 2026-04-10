@@ -17,7 +17,8 @@ function App() {
     reloadDatabase,
     createCollection,
     importCollectionFromExcel,
-    addManualCard
+    addManualCard,
+    deleteCollection
   } = useCollections();
 
   const [currentView, setCurrentView] = useState<'dashboard' | 'collection'>('dashboard');
