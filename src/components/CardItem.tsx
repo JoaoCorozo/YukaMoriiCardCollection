@@ -37,10 +37,12 @@ export const CardItem = ({ card, onClick, onToggleOwned }: CardItemProps) => {
                         className="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500"
                     />
                 ) : (
-                    <div className="flex flex-col items-center text-slate-400">
-                        <ImagePlus size={32} className="mb-2 opacity-30" />
-                        <span className="text-xs font-bold uppercase tracking-widest opacity-50">Sin foto</span>
-                    </div>
+                    <img 
+                        src="/apple-touch-icon.png" 
+                        alt="Sin imagen" 
+                        className="w-16 h-16 object-contain opacity-20 grayscale group-hover:scale-110 transition-transform duration-500"
+                        onError={(e) => e.currentTarget.style.display = 'none'}
+                    />
                 )}
             </div>
 

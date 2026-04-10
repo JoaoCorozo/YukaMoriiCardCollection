@@ -66,8 +66,13 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned }:
                                     </button>
                                 </>
                             ) : (
-                                <div className="flex flex-col items-center justify-center text-slate-400 w-full h-full">
-                                    <span className="text-5xl font-black mb-2 opacity-20">{card.pokemon.charAt(0)}</span>
+                                <div className="absolute inset-0 flex items-center justify-center bg-slate-100 group">
+                                    <img 
+                                        src="/apple-touch-icon.png" 
+                                        alt="Sin imagen" 
+                                        className="w-32 h-32 opacity-20 grayscale"
+                                        onError={(e) => e.currentTarget.style.display = 'none'}
+                                    />
                                 </div>
                             )}
 
