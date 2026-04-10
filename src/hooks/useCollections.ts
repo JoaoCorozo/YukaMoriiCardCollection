@@ -339,6 +339,17 @@ export const useCollections = () => {
         }
     };
 
+    const deleteCollection = async (collectionId: string) => {
+        // Prevent deleting original base collections if you prefer, but let's allow it for custom/imported.
+        // Or the UI can just restrict the ID.
+        const nextIndex = collections.filter(c => c.id !== collectionId);
+        await localforage.setItem(INDEX_KEY, nextIndex);
+        setCollections(nextIndex);
+        
+        // Cleanup storage
+        await localforage.removeItem(`collection-data-${collectionId}`);
+    };
+
     const unloadCollection = () => {
         setActiveCollection(null);
         setCards([]);
@@ -357,6 +368,7 @@ export const useCollections = () => {
         reloadDatabase,
         createCollection,
         importCollectionFromExcel,
-        addManualCard
+        addManualCard,
+        deleteCollection
     };
 };

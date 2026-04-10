@@ -1,15 +1,16 @@
 import React, { useRef, useState } from 'react';
 import type { CollectionItem } from '../types/Collection';
-import { Library, Upload, Plus, ChevronRight, FolderPlus, Download } from 'lucide-react';
+import { Library, Upload, Plus, ChevronRight, FolderPlus, Download, Trash2 } from 'lucide-react';
 
 interface DashboardProps {
     collections: CollectionItem[];
     onSelectCollection: (id: string) => void;
     onImportCollection: (file: File, name: string) => Promise<void>;
     onCreateCollection: (name: string) => Promise<void>;
+    onDeleteCollection: (id: string) => void;
 }
 
-export const Dashboard: React.FC<DashboardProps> = ({ collections, onSelectCollection, onImportCollection, onCreateCollection }) => {
+export const Dashboard: React.FC<DashboardProps> = ({ collections, onSelectCollection, onImportCollection, onCreateCollection, onDeleteCollection }) => {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [isImporting, setIsImporting] = useState(false);
 
@@ -65,6 +66,20 @@ export const Dashboard: React.FC<DashboardProps> = ({ collections, onSelectColle
                                         {col.ownedCards} / {col.totalCards > 0 ? col.totalCards : '?'} obtenidas
                                     </p>
                                 </div>
+                                {col.id !== 'yuka-morii' && (
+                                    <button 
+                                        className="p-2 text-red-300 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors mr-1"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            if (window.confirm(`¿Estás seguro de que quieres eliminar la colección "${col.title}"? Esta acción no se puede deshacer.`)) {
+                                                onDeleteCollection(col.id);
+                                            }
+                                        }}
+                                        title="Eliminar colección"
+                                    >
+                                        <Trash2 size={18} />
+                                    </button>
+                                )}
                                 <ChevronRight className="text-slate-300 group-hover:text-slate-600 transition-colors" />
                             </button>
                         ))}

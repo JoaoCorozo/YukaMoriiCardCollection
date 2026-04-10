@@ -52,6 +52,7 @@ function App() {
           onSelectCollection={handleSelectCollection}
           onCreateCollection={handleCreateCollection}
           onImportCollection={handleImportCollection}
+          onDeleteCollection={deleteCollection}
         />
       ) : (
         <CollectionView 
