@@ -56,7 +56,16 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned }:
                         <div className="w-40 h-56 mx-auto bg-slate-100 rounded-2xl flex items-center justify-center mb-6 shadow-xl border-4 border-white shadow-slate-300/50 relative overflow-hidden group">
                             {card.imageUrl ? (
                                 <>
-                                    <img src={card.imageUrl} alt={card.pokemon} className="w-full h-full object-contain p-2" />
+                                    <img 
+                                        src={card.imageUrl} 
+                                        alt={card.pokemon} 
+                                        className="w-full h-full object-contain p-2" 
+                                        onError={(e) => {
+                                            e.currentTarget.onerror = null;
+                                            e.currentTarget.src = '/reverso.jpeg';
+                                            e.currentTarget.className = "w-full h-full object-contain p-2 opacity-90";
+                                        }}
+                                    />
                                     <button
                                         onClick={removeImage}
                                         className="absolute top-2 right-2 p-2 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"

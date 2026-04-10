@@ -35,6 +35,11 @@ export const CardItem = ({ card, onClick, onToggleOwned }: CardItemProps) => {
                         src={card.imageUrl}
                         alt={card.pokemon}
                         className="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500"
+                        onError={(e) => {
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = '/reverso.jpeg';
+                            e.currentTarget.className = "w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500 shadow-sm opacity-90";
+                        }}
                     />
                 ) : (
                     <img 
