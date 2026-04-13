@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import type { CollectionItem } from '../types/Collection';
-import { Library, Upload, Plus, ChevronRight, FolderPlus, Download, Trash2 } from 'lucide-react';
+import { Library, Upload, ChevronRight, FolderPlus, Download, Trash2 } from 'lucide-react';
 
 interface DashboardProps {
     collections: CollectionItem[];
