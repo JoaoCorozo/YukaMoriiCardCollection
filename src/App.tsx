@@ -18,7 +18,9 @@ function App() {
     createCollection,
     importCollectionFromExcel,
     addManualCard,
-    deleteCollection
+    deleteCollection,
+    deleteCard,
+    editCard
   } = useCollections();
 
   const [currentView, setCurrentView] = useState<'dashboard' | 'collection'>('dashboard');
@@ -66,6 +68,8 @@ function App() {
           updateCardImage={updateCardImage}
           reloadDatabase={reloadDatabase}
           onAddManualCard={(card) => addManualCard(activeCollection.id, card)}
+          onDeleteCard={(cardId) => deleteCard(activeCollection.id, cardId)}
+          onEditCard={(cardId, updatedFields) => editCard(activeCollection.id, cardId, updatedFields)}
         />
       )}
     </div>

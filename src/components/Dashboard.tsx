@@ -32,109 +32,111 @@ export const Dashboard: React.FC<DashboardProps> = ({ collections, onSelectColle
     };
 
     return (
-        <div className="max-w-5xl mx-auto px-4 py-8">
-            <header className="mb-10 text-center">
-                <img src="/apple-touch-icon.png" alt="Logo" className="w-20 h-20 mx-auto rounded-full border-4 border-white shadow-lg mb-4" onError={(e) => e.currentTarget.style.display = 'none'} />
-                <h1 className="text-4xl font-black text-slate-800 drop-shadow-sm mb-2">Poké Trackers</h1>
-                <p className="text-slate-500 font-medium text-lg">Selecciona una colección o crea la tuya propia</p>
+        <div className="max-w-6xl mx-auto px-4 py-12 font-sans text-slate-800">
+            <header className="mb-12 text-center flex flex-col items-center">
+                <img src="/apple-touch-icon.png" alt="Logo" className="w-20 h-20 mx-auto rounded-full border-2 border-slate-200 shadow-md mb-4" onError={(e) => e.currentTarget.style.display = 'none'} />
+                <h1 className="text-4xl sm:text-5xl font-black drop-shadow-sm mb-3">Poké Trackers</h1>
+                <p className="text-slate-500 font-medium text-lg max-w-xl mx-auto">
+                    Administra tus cartas completando las colecciones oficiales o creando las tuyas propias.
+                </p>
+                <div className="h-1 w-20 bg-indigo-500 rounded-full mt-6"></div>
             </header>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="mb-8 flex flex-col sm:flex-row justify-between items-center sm:items-end gap-4">
+                <h2 className="text-2xl font-bold flex items-center gap-3">
+                    <Library className="text-indigo-500" /> Tus Colecciones
+                </h2>
+                <div className="flex items-center gap-3">
+                    <button
+                        onClick={() => fileInputRef.current?.click()}
+                        disabled={isImporting}
+                        className="flex items-center gap-2 bg-white text-indigo-600 border border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50 px-4 py-2.5 rounded-xl font-bold transition-all shadow-sm disabled:opacity-50"
+                    >
+                        <Upload size={18} className={isImporting ? "animate-pulse" : ""} />
+                        <span className="hidden sm:inline">{isImporting ? "Importando..." : "Importar Excel"}</span>
+                        <span className="sm:hidden">{isImporting ? "..." : "Importar"}</span>
+                    </button>
+                    <button
+                        onClick={handleCreateCustom}
+                        className="flex items-center gap-2 bg-indigo-600 text-white hover:bg-indigo-700 px-4 py-2.5 rounded-xl font-bold transition-all shadow-sm"
+                    >
+                        <FolderPlus size={18} />
+                        <span className="hidden sm:inline">Nueva Colección</span>
+                        <span className="sm:hidden">Nueva</span>
+                    </button>
+                </div>
+            </div>
+            
+            <input 
+                type="file" 
+                accept=".xlsx, .csv" 
+                className="hidden" 
+                ref={fileInputRef} 
+                onChange={handleFileUpload} 
+            />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 
-                {/* Collections List */}
-                <div className="bg-white p-6 rounded-3xl shadow-xl shadow-slate-200/50 border-2 border-slate-100 flex flex-col gap-4">
-                    <h2 className="text-xl font-bold flex items-center gap-2 text-slate-700">
-                        <Library className="text-blue-500" /> Tus Colecciones
-                    </h2>
-                    <div className="flex flex-col gap-3">
-                        {collections.map(col => (
-                            <button 
-                                key={col.id} 
-                                onClick={() => onSelectCollection(col.id)}
-                                className="text-left w-full flex items-center gap-4 p-4 rounded-2xl hover:bg-slate-50 border border-slate-100 transition-all hover:border-slate-300 hover:shadow-md group"
+                {collections.map(col => (
+                    <button 
+                        key={col.id} 
+                        onClick={() => onSelectCollection(col.id)}
+                        className="bg-white text-left w-full rounded-3xl border-2 border-slate-100 hover:border-indigo-300 hover:shadow-xl transition-all duration-300 group flex flex-col overflow-hidden relative shadow-sm"
+                    >
+                        {col.id !== 'yuka-morii' && (
+                            <div 
+                                className="absolute top-3 right-3 z-10 p-2 text-red-500 bg-white/80 hover:bg-red-500 hover:text-white backdrop-blur rounded-full opacity-0 group-hover:opacity-100 transition-all"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    if (window.confirm(`¿Estás seguro de que quieres eliminar "${col.title}"? Esta acción no se puede deshacer.`)) {
+                                        onDeleteCollection(col.id);
+                                    }
+                                }}
+                                title="Eliminar colección"
                             >
-                                <div className="w-14 h-14 bg-slate-200 rounded-xl overflow-hidden flex-shrink-0">
-                                    {col.coverImageUrl ? (
-                                        <img src={col.coverImageUrl} className="w-full h-full object-cover" alt="cover" />
-                                    ) : (
-                                        <div className="w-full h-full bg-gradient-to-br from-indigo-400 to-purple-500"></div>
-                                    )}
-                                </div>
-                                <div className="flex-1">
-                                    <h3 className="font-bold text-slate-800">{col.title}</h3>
-                                    <p className="text-xs text-slate-500 font-medium mt-1">
-                                        {col.ownedCards} / {col.totalCards > 0 ? col.totalCards : '?'} obtenidas
-                                    </p>
-                                </div>
-                                {col.id !== 'yuka-morii' && (
-                                    <button 
-                                        className="p-2 text-red-300 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors mr-1"
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            if (window.confirm(`¿Estás seguro de que quieres eliminar la colección "${col.title}"? Esta acción no se puede deshacer.`)) {
-                                                onDeleteCollection(col.id);
-                                            }
-                                        }}
-                                        title="Eliminar colección"
-                                    >
-                                        <Trash2 size={18} />
-                                    </button>
-                                )}
-                                <ChevronRight className="text-slate-300 group-hover:text-slate-600 transition-colors" />
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Import and Create Section */}
-                <div className="flex flex-col gap-6">
-                    <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-8 rounded-3xl shadow-xl text-white">
-                        <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
-                            <Upload className="text-blue-200" /> Importar Excel
-                        </h2>
-                        <p className="text-blue-100 text-sm mb-6">
-                            Sube cualquier hoja de cálculo (.xlsx) y la aplicación creará una colección instantánea detectando los nombres e imágenes de tus cartas.
-                        </p>
-                        <input 
-                            type="file" 
-                            accept=".xlsx, .csv" 
-                            className="hidden" 
-                            ref={fileInputRef} 
-                            onChange={handleFileUpload} 
-                        />
-                        <button 
-                            onClick={() => fileInputRef.current?.click()}
-                            disabled={isImporting}
-                            className="w-full py-4 bg-white text-blue-800 font-bold rounded-2xl shadow-lg hover:scale-[1.02] transition-transform flex items-center justify-center gap-2 mb-4"
-                        >
-                            {isImporting ? "Importando..." : "Subir Archivo Excel"}
-                        </button>
+                                <Trash2 size={16} />
+                            </div>
+                        )}
                         
-                        <a 
-                            href="/template_coleccion.xlsx" 
-                            download 
-                            className="text-center w-full block text-sm font-medium text-blue-200 hover:text-white flex items-center justify-center gap-1 transition-colors"
-                        >
-                            <Download size={14} /> Descargar Excel de ejemplo
-                        </a>
-                    </div>
+                        <div className="w-full h-36 bg-slate-100 flex items-center justify-center relative overflow-hidden">
+                            <div className="absolute inset-0 bg-slate-100 transition-transform duration-500 group-hover:scale-105 group-hover:rotate-1">
+                                {col.coverImageUrl ? (
+                                    <img src={col.coverImageUrl} className="w-full h-full object-cover" alt="cover" />
+                                ) : (
+                                    <div className="w-full h-full bg-gradient-to-br from-indigo-100 to-blue-200"></div>
+                                )}
+                            </div>
+                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/40 to-transparent"></div>
+                        </div>
+                        
+                        <div className="p-5 flex flex-col justify-between flex-1 bg-white relative z-10 w-full">
+                            <div>
+                                <h3 className="font-black text-lg text-slate-800 leading-tight mb-2 group-hover:text-indigo-600 transition-colors">{col.title}</h3>
+                            </div>
+                            
+                            <div className="flex items-center justify-between border-t border-slate-100 pt-3 mt-2">
+                                <div className="font-bold text-slate-700">
+                                    <span className="text-indigo-600 font-black text-xl">{col.ownedCards}</span>
+                                    <span className="text-slate-400 text-xs ml-1 font-bold">/ {col.totalCards > 0 ? col.totalCards : '?'}</span>
+                                </div>
+                                <div className="bg-indigo-50 p-2 rounded-full text-indigo-500 group-hover:bg-indigo-500 group-hover:text-white transition-colors">
+                                    <ChevronRight size={18} />
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                ))}
 
-                    <div className="bg-gradient-to-br from-purple-500 to-fuchsia-600 p-8 rounded-3xl shadow-xl text-white flex-1 flex flex-col justify-center">
-                        <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
-                            <FolderPlus className="text-purple-200" /> Colección Vacía
-                        </h2>
-                        <p className="text-purple-100 text-sm mb-6">
-                            Comienza un registro desde cero y agrega cartas individualmente de forma manual.
-                        </p>
-                        <button 
-                            onClick={handleCreateCustom}
-                            className="w-full py-4 bg-white/20 hover:bg-white/30 backdrop-blur text-white border-2 border-white/50 font-bold rounded-2xl transition-all flex items-center justify-center gap-2"
-                        >
-                            <Plus size={20} /> Crear Colección
-                        </button>
-                    </div>
-                </div>
-
+            </div>
+            
+            <div className="mt-16 text-center">
+                <a 
+                    href="/template_coleccion.xlsx" 
+                    download 
+                    className="inline-flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-indigo-600 bg-white px-6 py-3 rounded-full border border-slate-200 shadow-sm transition-all hover:shadow-md"
+                >
+                    <Download size={16} /> Descargar Plantilla Excel
+                </a>
             </div>
         </div>
     );

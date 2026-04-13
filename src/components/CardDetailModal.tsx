@@ -1,16 +1,25 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import type { PokemonCard } from '../types/PokemonCard';
-import { X, CheckCircle, Circle, MapPin, Hash, Star, LayoutList, UploadCloud, Trash } from 'lucide-react';
+import { X, CheckCircle, Circle, MapPin, Hash, Star, LayoutList, UploadCloud, Trash, Edit2, Save, XCircle } from 'lucide-react';
 
 interface CardDetailProps {
     card: PokemonCard | null;
     onClose: () => void;
     onUpdateImage: (id: string, imageUrl: string) => void;
     onToggleOwned: (id: string) => void;
+    onDeleteCard?: (id: string) => void;
+    onEditCard?: (id: string, updatedFields: Partial<PokemonCard>) => void;
 }
 
-export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned }: CardDetailProps) => {
+export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned, onDeleteCard, onEditCard }: CardDetailProps) => {
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const [isEditing, setIsEditing] = useState(false);
+    const [editedCard, setEditedCard] = useState<Partial<PokemonCard>>({});
+
+    useEffect(() => {
+        setIsEditing(false);
+        setEditedCard({});
+    }, [card]);
 
     if (!card) return null;
 
@@ -40,7 +49,27 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned }:
 
                 {/* Header Ribbon */}
                 <div className="absolute top-0 inset-x-0 h-24 bg-red-600 rounded-t-[1.5rem] -z-10"></div>
-                <div className="absolute top-0 right-0 p-4 z-20">
+                <div className="absolute top-0 right-0 p-4 z-20 flex gap-2">
+                    {onEditCard && !isEditing && (
+                        <button
+                            onClick={() => {
+                                setIsEditing(true);
+                                setEditedCard({
+                                    pokemon: card.pokemon,
+                                    price: card.price,
+                                    set: card.set,
+                                    number: card.number,
+                                    rarity: card.rarity,
+                                    variant: card.variant,
+                                    imageUrl: card.imageUrl
+                                });
+                            }}
+                            className="p-2 rounded-full bg-white/20 text-white hover:bg-white hover:text-blue-600 transition-colors shadow-sm"
+                            title="Editar"
+                        >
+                            <Edit2 size={24} strokeWidth={3} />
+                        </button>
+                    )}
                     <button
                         onClick={onClose}
                         className="p-2 rounded-full bg-white/20 text-white hover:bg-white hover:text-red-600 transition-colors shadow-sm"
@@ -101,28 +130,64 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned }:
                             />
                         </div>
 
-                        <h1 className="text-4xl font-black text-slate-800 drop-shadow-sm mb-3 font-sans pb-2">
-                            {card.pokemon}
-                        </h1>
-                        <div className="inline-block px-5 py-2 rounded-full bg-slate-100 text-slate-700 font-bold border-2 border-slate-200 shadow-sm text-lg">
-                            💰 ${card.price.toFixed(2)} USD
-                        </div>
+                        {isEditing ? (
+                            <div className="flex flex-col items-center gap-2 mb-3">
+                                <input
+                                    value={editedCard.pokemon || ''}
+                                    onChange={e => setEditedCard({ ...editedCard, pokemon: e.target.value })}
+                                    className="text-2xl font-black text-center text-slate-800 bg-slate-50 border-2 border-slate-200 rounded-xl p-2 w-full focus:outline-none focus:border-blue-400"
+                                    placeholder="Nombre del Pokémon"
+                                />
+                                <div className="flex items-center gap-2">
+                                    <span className="text-xl">💰 $</span>
+                                    <input
+                                        type="number"
+                                        value={editedCard.price || 0}
+                                        onChange={e => setEditedCard({ ...editedCard, price: Number(e.target.value) })}
+                                        className="text-lg font-bold text-slate-800 bg-slate-50 border-2 border-slate-200 rounded-xl p-1 w-24 text-center focus:outline-none focus:border-blue-400"
+                                    />
+                                </div>
+                                <input
+                                    value={editedCard.imageUrl || ''}
+                                    onChange={e => setEditedCard({ ...editedCard, imageUrl: e.target.value })}
+                                    className="text-sm font-medium text-center text-slate-800 bg-slate-50 border-2 border-slate-200 rounded-xl p-2 w-full focus:outline-none focus:border-blue-400 mt-2"
+                                    placeholder="URL de Imagen (Link opcional)"
+                                />
+                            </div>
+                        ) : (
+                            <>
+                                <h1 className="text-4xl font-black text-slate-800 drop-shadow-sm mb-3 font-sans pb-2">
+                                    {card.pokemon}
+                                </h1>
+                                <div className="inline-block px-5 py-2 rounded-full bg-slate-100 text-slate-700 font-bold border-2 border-slate-200 shadow-sm text-lg">
+                                    💰 ${card.price.toFixed(2)} USD
+                                </div>
+                            </>
+                        )}
                     </div>
 
                     <div className="space-y-4 pt-4">
                         <div className="grid grid-cols-2 gap-4">
                             <div className="bg-blue-50 p-4 rounded-2xl border-2 border-blue-100 shadow-sm flex items-start gap-3">
                                 <MapPin className="text-blue-500 mt-0.5" size={20} />
-                                <div>
+                                <div className="w-full">
                                     <p className="text-xs text-blue-500 uppercase font-bold tracking-wider mb-1">Set</p>
-                                    <p className="text-slate-800 font-black text-lg leading-tight">{card.set}</p>
+                                    {isEditing ? (
+                                        <input value={editedCard.set || ''} onChange={e => setEditedCard({ ...editedCard, set: e.target.value })} className="w-full font-black text-sm p-1 rounded border border-blue-200" />
+                                    ) : (
+                                        <p className="text-slate-800 font-black text-lg leading-tight">{card.set}</p>
+                                    )}
                                 </div>
                             </div>
                             <div className="bg-purple-50 p-4 rounded-2xl border-2 border-purple-100 shadow-sm flex items-start gap-3">
                                 <Hash className="text-purple-500 mt-0.5" size={20} />
-                                <div>
+                                <div className="w-full">
                                     <p className="text-xs text-purple-500 uppercase font-bold tracking-wider mb-1">Número</p>
-                                    <p className="text-slate-800 font-black text-lg leading-tight">{card.number}</p>
+                                    {isEditing ? (
+                                        <input value={editedCard.number || ''} onChange={e => setEditedCard({ ...editedCard, number: e.target.value })} className="w-full font-black text-sm p-1 rounded border border-purple-200" />
+                                    ) : (
+                                        <p className="text-slate-800 font-black text-lg leading-tight">{card.number}</p>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -130,19 +195,51 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned }:
                         <div className="grid grid-cols-2 gap-4">
                             <div className="bg-orange-50 p-4 rounded-2xl border-2 border-orange-100 shadow-sm flex items-start gap-3">
                                 <Star className="text-orange-500 mt-0.5" size={20} />
-                                <div>
+                                <div className="w-full">
                                     <p className="text-xs text-orange-500 uppercase font-bold tracking-wider mb-1">Rareza</p>
-                                    <p className="text-slate-800 font-black leading-tight">{card.rarity}</p>
+                                    {isEditing ? (
+                                        <input value={editedCard.rarity || ''} onChange={e => setEditedCard({ ...editedCard, rarity: e.target.value })} className="w-full font-black text-sm p-1 rounded border border-orange-200" />
+                                    ) : (
+                                        <p className="text-slate-800 font-black leading-tight">{card.rarity}</p>
+                                    )}
                                 </div>
                             </div>
                             <div className="bg-pink-50 p-4 rounded-2xl border-2 border-pink-100 shadow-sm flex items-start gap-3">
                                 <LayoutList className="text-pink-500 mt-0.5" size={20} />
-                                <div>
+                                <div className="w-full">
                                     <p className="text-xs text-pink-500 uppercase font-bold tracking-wider mb-1">Variante</p>
-                                    <p className="text-slate-800 font-black leading-tight">{card.variant || 'N/A'}</p>
+                                    {isEditing ? (
+                                        <input value={editedCard.variant || ''} onChange={e => setEditedCard({ ...editedCard, variant: e.target.value })} className="w-full font-black text-sm p-1 rounded border border-pink-200" />
+                                    ) : (
+                                        <p className="text-slate-800 font-black leading-tight">{card.variant || 'N/A'}</p>
+                                    )}
                                 </div>
                             </div>
                         </div>
+
+                        {isEditing && (
+                            <div className="flex gap-3 mt-4">
+                                <button
+                                    onClick={() => setIsEditing(false)}
+                                    className="flex-1 p-3 rounded-2xl bg-slate-100 text-slate-600 font-bold flex items-center justify-center gap-2 hover:bg-slate-200 transition-colors"
+                                >
+                                    <XCircle size={20} />
+                                    Cancelar
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        if (onEditCard) {
+                                            onEditCard(card.id, editedCard);
+                                        }
+                                        setIsEditing(false);
+                                    }}
+                                    className="flex-1 p-3 rounded-2xl bg-blue-500 text-white font-bold flex items-center justify-center gap-2 hover:bg-blue-600 transition-colors shadow-md"
+                                >
+                                    <Save size={20} />
+                                    Guardar
+                                </button>
+                            </div>
+                        )}
 
                         {/* Collection Status with animated backdrop */}
                         <div
@@ -166,6 +263,20 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned }:
                                 </p>
                             </div>
                         </div>
+
+                        {onDeleteCard && (
+                            <button
+                                onClick={() => {
+                                    if (window.confirm("¿Seguro que deseas eliminar esta carta de la colección?")) {
+                                        onDeleteCard(card.id);
+                                    }
+                                }}
+                                className="w-full mt-4 p-4 rounded-3xl bg-red-50 text-red-600 border-2 border-red-200 hover:bg-red-100 hover:border-red-300 font-bold flex items-center justify-center gap-2 transition-colors shadow-sm"
+                            >
+                                <Trash size={20} />
+                                Eliminar Carta
+                            </button>
+                        )}
                     </div>
 
                 </div>

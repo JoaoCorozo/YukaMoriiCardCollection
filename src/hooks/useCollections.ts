@@ -350,6 +350,34 @@ export const useCollections = () => {
         await localforage.removeItem(`collection-data-${collectionId}`);
     };
 
+    const deleteCard = async (collectionId: string, cardId: string) => {
+        const dbKey = `collection-data-${collectionId}`;
+        const localDB: PokemonCard[] | null = await localforage.getItem(dbKey);
+        if (!localDB) return;
+
+        const updatedCards = localDB.filter(c => c.id !== cardId);
+        await localforage.setItem(dbKey, updatedCards);
+        updateCollectionStats(collectionId, updatedCards);
+
+        if (activeCollection && activeCollection.id === collectionId) {
+            setCards(updatedCards);
+        }
+    };
+
+    const editCard = async (collectionId: string, cardId: string, updatedFields: Partial<PokemonCard>) => {
+        const dbKey = `collection-data-${collectionId}`;
+        const localDB: PokemonCard[] | null = await localforage.getItem(dbKey);
+        if (!localDB) return;
+
+        const updatedCards = localDB.map(c => c.id === cardId ? { ...c, ...updatedFields } : c);
+        await localforage.setItem(dbKey, updatedCards);
+        updateCollectionStats(collectionId, updatedCards);
+
+        if (activeCollection && activeCollection.id === collectionId) {
+            setCards(updatedCards);
+        }
+    };
+
     const unloadCollection = () => {
         setActiveCollection(null);
         setCards([]);
@@ -369,6 +397,8 @@ export const useCollections = () => {
         createCollection,
         importCollectionFromExcel,
         addManualCard,
-        deleteCollection
+        deleteCollection,
+        deleteCard,
+        editCard
     };
 };

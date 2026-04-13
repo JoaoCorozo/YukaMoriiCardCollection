@@ -15,6 +15,8 @@ interface CollectionViewProps {
     reloadDatabase: () => void;
     onBack: () => void;
     onAddManualCard?: (card: Omit<PokemonCard, 'id' | 'owned'>) => void;
+    onDeleteCard?: (id: string) => void;
+    onEditCard?: (id: string, updatedFields: Partial<PokemonCard>) => void;
 }
 
 export const CollectionView: React.FC<CollectionViewProps> = ({
@@ -26,7 +28,9 @@ export const CollectionView: React.FC<CollectionViewProps> = ({
     updateCardImage,
     reloadDatabase,
     onBack,
-    onAddManualCard
+    onAddManualCard,
+    onDeleteCard,
+    onEditCard
 }) => {
     const [selectedCard, setSelectedCard] = useState<PokemonCard | null>(null);
     const [searchTerm, setSearchTerm] = useState('');
@@ -237,6 +241,8 @@ export const CollectionView: React.FC<CollectionViewProps> = ({
                                     <input required placeholder="Set/Expansión" value={newCard.set} onChange={e => setNewCard({ ...newCard, set: e.target.value })} className="p-3 border rounded-xl bg-slate-50 text-slate-800 border-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
                                     <input placeholder="Número (ej. 001/198)" value={newCard.number} onChange={e => setNewCard({ ...newCard, number: e.target.value })} className="p-3 border rounded-xl bg-slate-50 text-slate-800 border-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
                                     <input type="number" placeholder="Precio ($)" value={newCard.price || ''} onChange={e => setNewCard({ ...newCard, price: Number(e.target.value) })} className="p-3 border rounded-xl bg-slate-50 text-slate-800 border-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+                                    <input placeholder="Rareza (ej. Común, Rara)" value={newCard.rarity} onChange={e => setNewCard({ ...newCard, rarity: e.target.value })} className="p-3 border rounded-xl bg-slate-50 text-slate-800 border-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+                                    <input placeholder="Variante (ej. Holo, Reverse)" value={newCard.variant} onChange={e => setNewCard({ ...newCard, variant: e.target.value })} className="p-3 border rounded-xl bg-slate-50 text-slate-800 border-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
                                     <input placeholder="URL de Imagen Fija" value={newCard.imageUrl} onChange={e => setNewCard({ ...newCard, imageUrl: e.target.value })} className="p-3 border rounded-xl bg-slate-50 text-slate-800 border-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 sm:col-span-2" />
                                 </div>
                                 <div className="flex gap-3 justify-end mt-2">
@@ -289,6 +295,16 @@ export const CollectionView: React.FC<CollectionViewProps> = ({
                         setSelectedCard(prev => prev ? { ...prev, imageUrl: url } : null);
                     }
                 }}
+                onDeleteCard={onDeleteCard ? (id) => {
+                    onDeleteCard(id);
+                    setSelectedCard(null);
+                } : undefined}
+                onEditCard={onEditCard ? (id, updatedFields) => {
+                    onEditCard(id, updatedFields);
+                    if (selectedCard?.id === id) {
+                        setSelectedCard(prev => prev ? { ...prev, ...updatedFields } : null);
+                    }
+                } : undefined}
             />
         </div>
     );
