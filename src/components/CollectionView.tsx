@@ -3,7 +3,7 @@ import { CardItem } from './CardItem';
 import { CardDetailModal } from './CardDetailModal';
 import type { PokemonCard } from '../types/PokemonCard';
 import type { CollectionItem } from '../types/Collection';
-import { Search, Library, CheckCircle, XCircle, DollarSign, Loader, AlertTriangle, RefreshCw, ArrowLeft, PlusCircle } from 'lucide-react';
+import { Search, Library, CheckCircle, XCircle, Loader, AlertTriangle, RefreshCw, ArrowLeft, PlusCircle } from 'lucide-react';
 
 interface CollectionViewProps {
     collection: CollectionItem;
@@ -45,7 +45,6 @@ export const CollectionView: React.FC<CollectionViewProps> = ({
         number: '',
         rarity: 'Common',
         variant: 'Normal',
-        price: 0,
         imageUrl: ''
     });
 
@@ -64,8 +63,6 @@ export const CollectionView: React.FC<CollectionViewProps> = ({
 
         result.sort((a, b) => {
             switch (sortBy) {
-                case 'price-asc': return a.price - b.price;
-                case 'price-desc': return b.price - a.price;
                 case 'name-asc': return a.pokemon.localeCompare(b.pokemon);
                 case 'name-desc': return b.pokemon.localeCompare(a.pokemon);
                 case 'set-asc': return a.set.localeCompare(b.set) || a.number.localeCompare(b.number, undefined, { numeric: true });
@@ -82,9 +79,8 @@ export const CollectionView: React.FC<CollectionViewProps> = ({
         const owned = cards.filter(c => c.owned).length;
         const missing = total - owned;
         const percentage = total > 0 ? Math.round((owned / total) * 100) : 0;
-        const totalValue = cards.reduce((sum, card) => card.owned ? sum + card.price : sum, 0);
 
-        return { total, owned, missing, percentage, totalValue };
+        return { total, owned, missing, percentage };
     }, [cards]);
 
     const handleAddSubmit = (e: React.FormEvent) => {
@@ -95,7 +91,7 @@ export const CollectionView: React.FC<CollectionViewProps> = ({
                 rank: cards.length + 1
             });
             setShowAddForm(false);
-            setNewCard({ pokemon: '', set: '', number: '', rarity: 'Common', variant: 'Normal', price: 0, imageUrl: '' });
+            setNewCard({ pokemon: '', set: '', number: '', rarity: 'Common', variant: 'Normal', imageUrl: '' });
         }
     };
 
@@ -179,8 +175,6 @@ export const CollectionView: React.FC<CollectionViewProps> = ({
                             onChange={(e) => setSortBy(e.target.value as any)}
                             className="px-4 py-3 bg-slate-800 border-2 border-slate-700 rounded-2xl text-white text-sm font-bold focus:outline-none focus:border-indigo-500 shadow-lg cursor-pointer"
                         >
-                            <option value="price-desc">💰 Precio (Mayor a Menor)</option>
-                            <option value="price-asc">💲 Precio (Menor a Mayor)</option>
                             <option value="name-asc">🔤 Nombre (A - Z)</option>
                             <option value="name-desc">🔤 Nombre (Z - A)</option>
                             <option value="set-asc">📦 Set / Expansión</option>
@@ -214,13 +208,6 @@ export const CollectionView: React.FC<CollectionViewProps> = ({
                             <p className="text-xl font-black text-slate-800">{stats.missing}</p>
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-3xl shadow-sm border border-slate-100 flex items-center gap-3">
-                        <div className="bg-yellow-100 p-2 rounded-xl text-yellow-600"><DollarSign size={24} /></div>
-                        <div>
-                            <p className="text-xs text-yellow-600 font-bold uppercase">Valor</p>
-                            <p className="text-xl font-black text-slate-800">${stats.totalValue.toLocaleString()}</p>
-                        </div>
-                    </div>
                 </div>
 
                 {/* Add Manual Item (Only for Custom) */}
@@ -240,7 +227,6 @@ export const CollectionView: React.FC<CollectionViewProps> = ({
                                     <input required placeholder="Nombre del Pokémon" value={newCard.pokemon} onChange={e => setNewCard({ ...newCard, pokemon: e.target.value })} className="p-3 border rounded-xl bg-slate-50 text-slate-800 border-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
                                     <input required placeholder="Set/Expansión" value={newCard.set} onChange={e => setNewCard({ ...newCard, set: e.target.value })} className="p-3 border rounded-xl bg-slate-50 text-slate-800 border-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
                                     <input placeholder="Número (ej. 001/198)" value={newCard.number} onChange={e => setNewCard({ ...newCard, number: e.target.value })} className="p-3 border rounded-xl bg-slate-50 text-slate-800 border-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
-                                    <input type="number" placeholder="Precio ($)" value={newCard.price || ''} onChange={e => setNewCard({ ...newCard, price: Number(e.target.value) })} className="p-3 border rounded-xl bg-slate-50 text-slate-800 border-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
                                     <input placeholder="Rareza (ej. Común, Rara)" value={newCard.rarity} onChange={e => setNewCard({ ...newCard, rarity: e.target.value })} className="p-3 border rounded-xl bg-slate-50 text-slate-800 border-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
                                     <input placeholder="Variante (ej. Holo, Reverse)" value={newCard.variant} onChange={e => setNewCard({ ...newCard, variant: e.target.value })} className="p-3 border rounded-xl bg-slate-50 text-slate-800 border-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
                                     <input placeholder="URL de Imagen Fija" value={newCard.imageUrl} onChange={e => setNewCard({ ...newCard, imageUrl: e.target.value })} className="p-3 border rounded-xl bg-slate-50 text-slate-800 border-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 sm:col-span-2" />

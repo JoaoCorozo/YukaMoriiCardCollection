@@ -32,24 +32,10 @@ export const useCollections = () => {
             try {
                 let index: CollectionItem[] | null = await localforage.getItem(INDEX_KEY);
                 
-                if (!index || index.length === 0) {
-                    // Initialize with predefined
+                if (!index) {
+                    // Initialize with predefined only on completely fresh install
                     index = [...PREDEFINED_COLLECTIONS];
                     await localforage.setItem(INDEX_KEY, index);
-                } else {
-                    // Ensure predefined exist inside index just in case
-                    const newIndex = [...index];
-                    let modified = false;
-                    PREDEFINED_COLLECTIONS.forEach(pre => {
-                        if (!newIndex.find(c => c.id === pre.id)) {
-                            newIndex.push(pre);
-                            modified = true;
-                        }
-                    });
-                    if (modified) {
-                        index = newIndex;
-                        await localforage.setItem(INDEX_KEY, index);
-                    }
                 }
                 setCollections(index);
                 setLoading(false);
@@ -182,12 +168,10 @@ export const useCollections = () => {
                         number: String(row[3] || ''),
                         rarity: String(row[4] || ''),
                         variant: String(row[5] || ''),
-                        price: Number(row[6]) || 0,
                         owned: isOwned,
                         imageUrl: customImage || defaultImage,
                     };
                 });
-                parsedCards.sort((a, b) => b.price - a.price);
             }
 
             const dbKey = `collection-data-${col.id}`;
@@ -286,7 +270,6 @@ export const useCollections = () => {
                     number: String(row[3] || '0'),
                     rarity: String(row[4] || 'Común'),
                     variant: String(row[5] || 'Normal'),
-                    price: Number(row[6]) || 0,
                     owned: false,
                     imageUrl: defaultImage,
                 };

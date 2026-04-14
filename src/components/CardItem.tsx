@@ -16,11 +16,6 @@ export const CardItem = ({ card, onClick, onToggleOwned }: CardItemProps) => {
                 : 'bg-white border-slate-100 shadow-slate-200/50 hover:border-yellow-300'
                 }`}
         >
-            {/* Price Badge */}
-            <div className="absolute -top-4 -right-4 bg-yellow-400 text-yellow-950 font-black text-sm px-4 py-2 rounded-full shadow-md border-2 border-white transform rotate-3 z-10">
-                ${card.price.toFixed(2)}
-            </div>
-
             {/* Decorative dots */}
             <div className="absolute top-4 left-4 flex gap-1 z-10">
                 <div className="w-2.5 h-2.5 rounded-full bg-red-400 border border-red-500"></div>

@@ -6,7 +6,7 @@ export interface PokemonCard {
     number: string;
     rarity: string;
     variant: string;
-    price: number;
+
     owned: boolean;
     imageUrl?: string;
 }

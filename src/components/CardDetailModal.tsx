@@ -56,7 +56,6 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned, o
                                 setIsEditing(true);
                                 setEditedCard({
                                     pokemon: card.pokemon,
-                                    price: card.price,
                                     set: card.set,
                                     number: card.number,
                                     rarity: card.rarity,
@@ -64,7 +63,7 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned, o
                                     imageUrl: card.imageUrl
                                 });
                             }}
-                            className="p-2 rounded-full bg-white/20 text-white hover:bg-white hover:text-blue-600 transition-colors shadow-sm"
+                            className="p-2 rounded-full bg-slate-100 text-slate-400 hover:bg-slate-200 hover:text-blue-600 transition-colors shadow-sm"
                             title="Editar"
                         >
                             <Edit2 size={24} strokeWidth={3} />
@@ -72,7 +71,7 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned, o
                     )}
                     <button
                         onClick={onClose}
-                        className="p-2 rounded-full bg-white/20 text-white hover:bg-white hover:text-red-600 transition-colors shadow-sm"
+                        className="p-2 rounded-full bg-slate-100 text-slate-400 hover:bg-slate-200 hover:text-red-600 transition-colors shadow-sm"
                     >
                         <X size={24} strokeWidth={3} />
                     </button>
@@ -138,15 +137,6 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned, o
                                     className="text-2xl font-black text-center text-slate-800 bg-slate-50 border-2 border-slate-200 rounded-xl p-2 w-full focus:outline-none focus:border-blue-400"
                                     placeholder="Nombre del Pokémon"
                                 />
-                                <div className="flex items-center gap-2">
-                                    <span className="text-xl">💰 $</span>
-                                    <input
-                                        type="number"
-                                        value={editedCard.price || 0}
-                                        onChange={e => setEditedCard({ ...editedCard, price: Number(e.target.value) })}
-                                        className="text-lg font-bold text-slate-800 bg-slate-50 border-2 border-slate-200 rounded-xl p-1 w-24 text-center focus:outline-none focus:border-blue-400"
-                                    />
-                                </div>
                                 <input
                                     value={editedCard.imageUrl || ''}
                                     onChange={e => setEditedCard({ ...editedCard, imageUrl: e.target.value })}
@@ -159,9 +149,6 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned, o
                                 <h1 className="text-4xl font-black text-slate-800 drop-shadow-sm mb-3 font-sans pb-2">
                                     {card.pokemon}
                                 </h1>
-                                <div className="inline-block px-5 py-2 rounded-full bg-slate-100 text-slate-700 font-bold border-2 border-slate-200 shadow-sm text-lg">
-                                    💰 ${card.price.toFixed(2)} USD
-                                </div>
                             </>
                         )}
                     </div>
