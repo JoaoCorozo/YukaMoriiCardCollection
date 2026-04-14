@@ -231,7 +231,7 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned, o
                                     className="flex-1 p-3 rounded-xl bg-blue-500 border-4 border-slate-900 text-white font-black uppercase tracking-wide flex items-center justify-center gap-2 hover:bg-blue-400 transition-all shadow-[0_4px_0_rgb(15,23,42)] active:translate-y-1 active:shadow-none"
                                 >
                                     <Save size={20} strokeWidth={3} />
-                                    Guardar
+                                    Guardar Cambios
                                 </button>
                             </div>
                         )}
@@ -249,9 +249,9 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned, o
                                 {card.owned ? <CheckCircle size={32} strokeWidth={3} /> : <Circle size={32} strokeWidth={3} />}
                             </div>
                             <div className="relative z-10">
-                                <p className={`text-sm font-black uppercase tracking-wider mb-1 ${card.owned ? 'text-green-900' : 'text-slate-500'}`}>Status</p>
+                                <p className={`text-sm font-black uppercase tracking-wider mb-1 ${card.owned ? 'text-green-900' : 'text-slate-500'}`}>Estado de Captura</p>
                                 <p className={`text-2xl font-black uppercase tracking-tight ${card.owned ? 'text-white drop-shadow-[0_2px_0_rgba(0,0,0,0.3)]' : 'text-slate-400'}`}>
-                                    {card.owned ? '¡Capturado!' : 'Falta'}
+                                    {card.owned ? '¡Ya la tienes!' : 'Aún te falta'}
                                 </p>
                             </div>
                         </div>
@@ -266,7 +266,7 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned, o
                                 className="w-full mt-6 p-4 rounded-xl bg-red-600 text-white font-black uppercase tracking-widest border-4 border-slate-900 hover:bg-red-500 flex items-center justify-center gap-2 transition-all shadow-[0_4px_0_rgb(15,23,42)] active:translate-y-1 active:shadow-none"
                             >
                                 <Trash size={20} strokeWidth={3} />
-                                Eliminar Carta
+                                Soltar Carta
                             </button>
                         )}
                     </div>

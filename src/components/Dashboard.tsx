@@ -42,8 +42,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ collections, onSelectColle
                     <h1 className="text-4xl sm:text-5xl font-black text-white drop-shadow-[0_4px_0_rgba(0,0,0,0.3)] mb-2 tracking-wide uppercase">
                         Poké Trackers
                     </h1>
-                    <p className="text-red-100 font-bold text-center text-sm sm:text-base max-w-xl">
-                        SISTEMA DE GESTIÓN DE COLECCIONES V 1.0
+                    <p className="text-red-100 font-bold text-center text-sm sm:text-base max-w-xl tracking-wide">
+                        ¡Tu registro personalizado para atraparlas todas!
                     </p>
                 </div>
                 {/* Pokeball line effect */}
@@ -53,7 +53,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ collections, onSelectColle
             <div className="max-w-6xl mx-auto px-4">
                 <div className="mb-8 flex flex-col sm:flex-row justify-between items-center sm:items-end gap-4">
                     <h2 className="text-3xl font-black flex items-center gap-3 uppercase tracking-tight text-slate-800">
-                        <Library className="text-red-600" size={32} strokeWidth={3} /> Data Colecciones
+                        <Library className="text-red-600" size={32} strokeWidth={3} /> Mis Colecciones
                     </h2>
                 <div className="flex items-center gap-3">
                     <button
@@ -62,16 +62,16 @@ export const Dashboard: React.FC<DashboardProps> = ({ collections, onSelectColle
                         className="flex items-center gap-2 bg-yellow-400 text-yellow-950 border-4 border-slate-900 hover:bg-yellow-300 hover:-translate-y-1 active:translate-y-0 px-4 py-2.5 rounded-xl font-black uppercase transition-all shadow-[0_4px_0_rgb(15,23,42)] disabled:opacity-50"
                     >
                         <Upload size={20} strokeWidth={3} className={isImporting ? "animate-pulse" : ""} />
-                        <span className="hidden sm:inline">{isImporting ? "Cargando..." : "Importar .XLSX"}</span>
-                        <span className="sm:hidden">{isImporting ? "..." : "Importar"}</span>
+                        <span className="hidden sm:inline">{isImporting ? "Cargando..." : "Subir Excel"}</span>
+                        <span className="sm:hidden">{isImporting ? "..." : "Subir"}</span>
                     </button>
                     <button
                         onClick={handleCreateCustom}
                         className="flex items-center gap-2 bg-blue-500 text-white border-4 border-slate-900 hover:bg-blue-400 hover:-translate-y-1 active:translate-y-0 px-4 py-2.5 rounded-xl font-black uppercase transition-all shadow-[0_4px_0_rgb(15,23,42)]"
                     >
                         <FolderPlus size={20} strokeWidth={3} />
-                        <span className="hidden sm:inline">Nueva Colección</span>
-                        <span className="sm:hidden">Nueva</span>
+                        <span className="hidden sm:inline">Crear Nueva</span>
+                        <span className="sm:hidden">Crear</span>
                     </button>
                 </div>
             </div>

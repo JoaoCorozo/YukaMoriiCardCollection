@@ -139,8 +139,8 @@ export const CollectionView: React.FC<CollectionViewProps> = ({
                         <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
                             <div className="flex bg-slate-900 rounded-xl p-1 shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)] w-full sm:w-auto overflow-hidden">
                                 <button onClick={() => setFilter('all')} className={`flex-1 px-4 py-2 font-black uppercase text-sm transition-colors ${filter === 'all' ? 'bg-white text-slate-900 rounded-lg' : 'text-slate-400 hover:text-white'}`}>Todas</button>
-                                <button onClick={() => setFilter('owned')} className={`flex-1 px-4 py-2 font-black uppercase text-sm transition-colors ${filter === 'owned' ? 'bg-green-400 text-green-950 rounded-lg' : 'text-slate-400 hover:text-white'}`}>Tengo</button>
-                                <button onClick={() => setFilter('missing')} className={`flex-1 px-4 py-2 font-black uppercase text-sm transition-colors ${filter === 'missing' ? 'bg-red-500 text-white rounded-lg' : 'text-slate-400 hover:text-white'}`}>Faltan</button>
+                                <button onClick={() => setFilter('owned')} className={`flex-1 px-4 py-2 font-black uppercase text-sm transition-colors ${filter === 'owned' ? 'bg-green-400 text-green-950 rounded-lg' : 'text-slate-400 hover:text-white'}`}>Atrapadas</button>
+                                <button onClick={() => setFilter('missing')} className={`flex-1 px-4 py-2 font-black uppercase text-sm transition-colors ${filter === 'missing' ? 'bg-red-500 text-white rounded-lg' : 'text-slate-400 hover:text-white'}`}>Me Faltan</button>
                             </div>
 
                             {collection.excelUrl && (
@@ -196,14 +196,14 @@ export const CollectionView: React.FC<CollectionViewProps> = ({
                     <div className="bg-green-50 p-4 rounded-2xl border-4 border-slate-900 shadow-[4px_4px_0_rgb(15,23,42)] flex items-center gap-3">
                         <div className="bg-green-500 p-2.5 rounded-xl text-white border-2 border-slate-900"><CheckCircle size={24} strokeWidth={3} /></div>
                         <div>
-                            <p className="text-xs text-green-800 font-black uppercase">Obtenidas</p>
+                            <p className="text-xs text-green-800 font-black uppercase">¡Atrapadas!</p>
                             <p className="text-2xl font-black text-slate-900">{stats.owned} <span className="text-sm text-slate-500">/ {stats.total}</span></p>
                         </div>
                     </div>
                     <div className="bg-red-50 p-4 rounded-2xl border-4 border-slate-900 shadow-[4px_4px_0_rgb(15,23,42)] flex items-center gap-3">
                         <div className="bg-red-500 p-2.5 rounded-xl text-white border-2 border-slate-900"><XCircle size={24} strokeWidth={3} /></div>
                         <div>
-                            <p className="text-xs text-red-800 font-black uppercase">Faltantes</p>
+                            <p className="text-xs text-red-800 font-black uppercase">Me Faltan</p>
                             <p className="text-2xl font-black text-slate-900">{stats.missing}</p>
                         </div>
                     </div>
@@ -217,11 +217,11 @@ export const CollectionView: React.FC<CollectionViewProps> = ({
                                 onClick={() => setShowAddForm(true)}
                                 className="w-full py-5 border-4 border-dashed border-slate-400 hover:border-slate-900 rounded-3xl text-slate-600 font-black uppercase flex justify-center items-center gap-3 hover:bg-slate-200 hover:text-slate-900 transition-all"
                             >
-                                <PlusCircle size={24} strokeWidth={3} /> Agregar Carta Manualmente
+                                <PlusCircle size={24} strokeWidth={3} /> Añadir Carta a Mano
                             </button>
                         ) : (
                             <form onSubmit={handleAddSubmit} className="bg-yellow-50 p-6 rounded-2xl shadow-[8px_8px_0_rgb(15,23,42)] border-4 border-slate-900 flex flex-col gap-4">
-                                <h3 className="text-xl font-black uppercase text-slate-800 border-b-4 border-slate-900 pb-2 inline-block w-fit">Nueva Carta</h3>
+                                <h3 className="text-xl font-black uppercase text-slate-800 border-b-4 border-slate-900 pb-2 inline-block w-fit">Añadir Nueva Carta</h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
                                     <input required placeholder="Nombre del Pokémon" value={newCard.pokemon} onChange={e => setNewCard({ ...newCard, pokemon: e.target.value })} className="p-3 border-4 rounded-xl bg-white text-slate-800 border-slate-900 font-bold placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-yellow-400" />
                                     <input required placeholder="Set/Expansión" value={newCard.set} onChange={e => setNewCard({ ...newCard, set: e.target.value })} className="p-3 border-4 rounded-xl bg-white text-slate-800 border-slate-900 font-bold placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-yellow-400" />
@@ -232,7 +232,7 @@ export const CollectionView: React.FC<CollectionViewProps> = ({
                                 </div>
                                 <div className="flex gap-4 justify-end mt-4">
                                     <button type="button" onClick={() => setShowAddForm(false)} className="px-6 py-3 font-black uppercase text-slate-900 bg-white border-4 border-slate-900 hover:bg-slate-200 rounded-xl shadow-[0_4px_0_rgb(15,23,42)] active:translate-y-1 active:shadow-none transition-all">Cancelar</button>
-                                    <button type="submit" className="px-6 py-3 font-black uppercase text-white bg-blue-500 border-4 border-slate-900 hover:bg-blue-600 rounded-xl shadow-[0_4px_0_rgb(15,23,42)] active:translate-y-1 active:shadow-none transition-all">Guardar</button>
+                                    <button type="submit" className="px-6 py-3 font-black uppercase text-white bg-blue-500 border-4 border-slate-900 hover:bg-blue-600 rounded-xl shadow-[0_4px_0_rgb(15,23,42)] active:translate-y-1 active:shadow-none transition-all">Guardar Carta</button>
                                 </div>
                             </form>
                         )}
