@@ -41,15 +41,15 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned, o
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md" onClick={onClose}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm" onClick={onClose}>
             <div
-                className="bg-white rounded-[2rem] w-full max-w-md max-h-[90vh] overflow-y-auto shadow-2xl animate-fade-in-up border-8 border-yellow-400 relative"
+                className="bg-white rounded-3xl w-full max-w-md max-h-[90vh] overflow-y-auto shadow-[12px_12px_0_rgb(15,23,42)] animate-fade-in-up border-4 border-slate-900 relative"
                 onClick={(e) => e.stopPropagation()}
             >
 
                 {/* Header Ribbon */}
-                <div className="absolute top-0 inset-x-0 h-24 bg-red-600 rounded-t-[1.5rem] -z-10"></div>
-                <div className="absolute top-0 right-0 p-4 z-20 flex gap-2">
+                <div className="absolute top-0 inset-x-0 h-24 bg-red-600 rounded-t-[1.3rem] border-b-4 border-slate-900 -z-10"></div>
+                <div className="absolute top-0 right-0 p-4 z-20 flex gap-3">
                     {onEditCard && !isEditing && (
                         <button
                             onClick={() => {
@@ -63,7 +63,7 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned, o
                                     imageUrl: card.imageUrl
                                 });
                             }}
-                            className="p-2 rounded-full bg-slate-100 text-slate-400 hover:bg-slate-200 hover:text-blue-600 transition-colors shadow-sm"
+                            className="p-2 rounded-xl bg-white border-4 border-slate-900 text-slate-900 hover:bg-yellow-400 hover:-translate-y-1 transition-all shadow-[0_4px_0_rgb(15,23,42)]"
                             title="Editar"
                         >
                             <Edit2 size={24} strokeWidth={3} />
@@ -71,17 +71,17 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned, o
                     )}
                     <button
                         onClick={onClose}
-                        className="p-2 rounded-full bg-slate-100 text-slate-400 hover:bg-slate-200 hover:text-red-600 transition-colors shadow-sm"
+                        className="p-2 rounded-xl bg-white border-4 border-slate-900 text-slate-900 hover:bg-red-500 hover:text-white hover:-translate-y-1 transition-all shadow-[0_4px_0_rgb(15,23,42)]"
                     >
                         <X size={24} strokeWidth={3} />
                     </button>
                 </div>
 
                 {/* Content */}
-                <div className="p-8 pt-6 space-y-6 relative z-10 mt-6">
+                <div className="p-8 pt-6 space-y-6 relative z-10 mt-6 font-sans">
 
                     <div className="text-center relative">
-                        <div className="w-40 h-56 mx-auto bg-slate-100 rounded-2xl flex items-center justify-center mb-6 shadow-xl border-4 border-white shadow-slate-300/50 relative overflow-hidden group">
+                        <div className="w-40 h-56 mx-auto bg-slate-200 rounded-xl flex items-center justify-center mb-6 shadow-[inset_0_4px_4px_rgba(0,0,0,0.1)] border-4 border-slate-900 relative overflow-hidden group">
                             {card.imageUrl ? (
                                 <>
                                     <img 
@@ -130,23 +130,23 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned, o
                         </div>
 
                         {isEditing ? (
-                            <div className="flex flex-col items-center gap-2 mb-3">
+                            <div className="flex flex-col items-center gap-3 mb-4 mt-4">
                                 <input
                                     value={editedCard.pokemon || ''}
                                     onChange={e => setEditedCard({ ...editedCard, pokemon: e.target.value })}
-                                    className="text-2xl font-black text-center text-slate-800 bg-slate-50 border-2 border-slate-200 rounded-xl p-2 w-full focus:outline-none focus:border-blue-400"
+                                    className="text-2xl font-black text-center text-slate-900 bg-white border-4 border-slate-900 rounded-xl p-3 w-full focus:outline-none focus:ring-4 focus:ring-yellow-400 uppercase"
                                     placeholder="Nombre del Pokémon"
                                 />
                                 <input
                                     value={editedCard.imageUrl || ''}
                                     onChange={e => setEditedCard({ ...editedCard, imageUrl: e.target.value })}
-                                    className="text-sm font-medium text-center text-slate-800 bg-slate-50 border-2 border-slate-200 rounded-xl p-2 w-full focus:outline-none focus:border-blue-400 mt-2"
-                                    placeholder="URL de Imagen (Link opcional)"
+                                    className="text-sm font-bold text-center text-slate-900 bg-white border-4 border-slate-900 rounded-xl p-3 w-full focus:outline-none focus:ring-4 focus:ring-yellow-400 mt-2"
+                                    placeholder="URL de Imagen Fija"
                                 />
                             </div>
                         ) : (
                             <>
-                                <h1 className="text-4xl font-black text-slate-800 drop-shadow-sm mb-3 font-sans pb-2">
+                                <h1 className="text-3xl font-black text-slate-900 uppercase drop-shadow-[0_2px_0_rgba(0,0,0,0.2)] mb-2 mt-4 tracking-tight">
                                     {card.pokemon}
                                 </h1>
                             </>
@@ -155,62 +155,70 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned, o
 
                     <div className="space-y-4 pt-4">
                         <div className="grid grid-cols-2 gap-4">
-                            <div className="bg-blue-50 p-4 rounded-2xl border-2 border-blue-100 shadow-sm flex items-start gap-3">
-                                <MapPin className="text-blue-500 mt-0.5" size={20} />
+                            <div className="bg-yellow-50 p-4 rounded-xl border-4 border-slate-900 shadow-[4px_4px_0_rgb(15,23,42)] flex flex-col gap-1 items-start">
+                                <div className="flex items-center gap-2 text-yellow-600 mb-1">
+                                    <MapPin size={20} strokeWidth={3} />
+                                    <p className="text-xs font-black uppercase tracking-widest text-slate-900">Set</p>
+                                </div>
                                 <div className="w-full">
-                                    <p className="text-xs text-blue-500 uppercase font-bold tracking-wider mb-1">Set</p>
                                     {isEditing ? (
-                                        <input value={editedCard.set || ''} onChange={e => setEditedCard({ ...editedCard, set: e.target.value })} className="w-full font-black text-sm p-1 rounded border border-blue-200" />
+                                        <input value={editedCard.set || ''} onChange={e => setEditedCard({ ...editedCard, set: e.target.value })} className="w-full font-black text-sm p-2 rounded-lg border-2 border-slate-900 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
                                     ) : (
-                                        <p className="text-slate-800 font-black text-lg leading-tight">{card.set}</p>
+                                        <p className="text-slate-900 font-black text-lg uppercase leading-tight truncate" title={card.set}>{card.set}</p>
                                     )}
                                 </div>
                             </div>
-                            <div className="bg-purple-50 p-4 rounded-2xl border-2 border-purple-100 shadow-sm flex items-start gap-3">
-                                <Hash className="text-purple-500 mt-0.5" size={20} />
+                            <div className="bg-blue-50 p-4 rounded-xl border-4 border-slate-900 shadow-[4px_4px_0_rgb(15,23,42)] flex flex-col gap-1 items-start">
+                                <div className="flex items-center gap-2 text-blue-600 mb-1">
+                                    <Hash size={20} strokeWidth={3} />
+                                    <p className="text-xs font-black uppercase tracking-widest text-slate-900">Número</p>
+                                </div>
                                 <div className="w-full">
-                                    <p className="text-xs text-purple-500 uppercase font-bold tracking-wider mb-1">Número</p>
                                     {isEditing ? (
-                                        <input value={editedCard.number || ''} onChange={e => setEditedCard({ ...editedCard, number: e.target.value })} className="w-full font-black text-sm p-1 rounded border border-purple-200" />
+                                        <input value={editedCard.number || ''} onChange={e => setEditedCard({ ...editedCard, number: e.target.value })} className="w-full font-black text-sm p-2 rounded-lg border-2 border-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-400" />
                                     ) : (
-                                        <p className="text-slate-800 font-black text-lg leading-tight">{card.number}</p>
+                                        <p className="text-slate-900 font-black text-lg uppercase leading-tight">{card.number}</p>
                                     )}
                                 </div>
                             </div>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
-                            <div className="bg-orange-50 p-4 rounded-2xl border-2 border-orange-100 shadow-sm flex items-start gap-3">
-                                <Star className="text-orange-500 mt-0.5" size={20} />
+                            <div className="bg-green-50 p-4 rounded-xl border-4 border-slate-900 shadow-[4px_4px_0_rgb(15,23,42)] flex flex-col gap-1 items-start">
+                                <div className="flex items-center gap-2 text-green-600 mb-1">
+                                    <Star size={20} strokeWidth={3} />
+                                    <p className="text-xs font-black uppercase tracking-widest text-slate-900">Rareza</p>
+                                </div>
                                 <div className="w-full">
-                                    <p className="text-xs text-orange-500 uppercase font-bold tracking-wider mb-1">Rareza</p>
                                     {isEditing ? (
-                                        <input value={editedCard.rarity || ''} onChange={e => setEditedCard({ ...editedCard, rarity: e.target.value })} className="w-full font-black text-sm p-1 rounded border border-orange-200" />
+                                        <input value={editedCard.rarity || ''} onChange={e => setEditedCard({ ...editedCard, rarity: e.target.value })} className="w-full font-black text-sm p-2 rounded-lg border-2 border-slate-900 focus:outline-none focus:ring-2 focus:ring-green-400" />
                                     ) : (
-                                        <p className="text-slate-800 font-black leading-tight">{card.rarity}</p>
+                                        <p className="text-slate-900 font-black uppercase leading-tight truncate" title={card.rarity}>{card.rarity}</p>
                                     )}
                                 </div>
                             </div>
-                            <div className="bg-pink-50 p-4 rounded-2xl border-2 border-pink-100 shadow-sm flex items-start gap-3">
-                                <LayoutList className="text-pink-500 mt-0.5" size={20} />
+                            <div className="bg-pink-50 p-4 rounded-xl border-4 border-slate-900 shadow-[4px_4px_0_rgb(15,23,42)] flex flex-col gap-1 items-start">
+                                <div className="flex items-center gap-2 text-pink-600 mb-1">
+                                    <LayoutList size={20} strokeWidth={3} />
+                                    <p className="text-xs font-black uppercase tracking-widest text-slate-900">Variante</p>
+                                </div>
                                 <div className="w-full">
-                                    <p className="text-xs text-pink-500 uppercase font-bold tracking-wider mb-1">Variante</p>
                                     {isEditing ? (
-                                        <input value={editedCard.variant || ''} onChange={e => setEditedCard({ ...editedCard, variant: e.target.value })} className="w-full font-black text-sm p-1 rounded border border-pink-200" />
+                                        <input value={editedCard.variant || ''} onChange={e => setEditedCard({ ...editedCard, variant: e.target.value })} className="w-full font-black text-sm p-2 rounded-lg border-2 border-slate-900 focus:outline-none focus:ring-2 focus:ring-pink-400" />
                                     ) : (
-                                        <p className="text-slate-800 font-black leading-tight">{card.variant || 'N/A'}</p>
+                                        <p className="text-slate-900 font-black uppercase leading-tight truncate" title={card.variant}>{card.variant || 'N/A'}</p>
                                     )}
                                 </div>
                             </div>
                         </div>
 
                         {isEditing && (
-                            <div className="flex gap-3 mt-4">
+                            <div className="flex gap-4 mt-4 overflow-hidden p-1">
                                 <button
                                     onClick={() => setIsEditing(false)}
-                                    className="flex-1 p-3 rounded-2xl bg-slate-100 text-slate-600 font-bold flex items-center justify-center gap-2 hover:bg-slate-200 transition-colors"
+                                    className="flex-1 p-3 rounded-xl bg-white border-4 border-slate-900 text-slate-900 font-black uppercase tracking-wide flex items-center justify-center gap-2 hover:bg-slate-200 transition-all shadow-[0_4px_0_rgb(15,23,42)] active:translate-y-1 active:shadow-none"
                                 >
-                                    <XCircle size={20} />
+                                    <XCircle size={20} strokeWidth={3} />
                                     Cancelar
                                 </button>
                                 <button
@@ -220,9 +228,9 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned, o
                                         }
                                         setIsEditing(false);
                                     }}
-                                    className="flex-1 p-3 rounded-2xl bg-blue-500 text-white font-bold flex items-center justify-center gap-2 hover:bg-blue-600 transition-colors shadow-md"
+                                    className="flex-1 p-3 rounded-xl bg-blue-500 border-4 border-slate-900 text-white font-black uppercase tracking-wide flex items-center justify-center gap-2 hover:bg-blue-400 transition-all shadow-[0_4px_0_rgb(15,23,42)] active:translate-y-1 active:shadow-none"
                                 >
-                                    <Save size={20} />
+                                    <Save size={20} strokeWidth={3} />
                                     Guardar
                                 </button>
                             </div>
@@ -231,22 +239,19 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned, o
                         {/* Collection Status with animated backdrop */}
                         <div
                             onClick={() => onToggleOwned(card.id)}
-                            className={`mt-8 p-5 rounded-3xl border-4 shadow-md flex items-center gap-4 transition-colors duration-300 relative overflow-hidden cursor-pointer hover:scale-[1.02] ${card.owned
-                                ? 'bg-green-50 border-green-400 shadow-green-100'
-                                : 'bg-slate-50 border-slate-200 hover:border-slate-300 shadow-slate-100'
+                            className={`mt-8 p-5 rounded-xl border-4 flex items-center gap-4 transition-all duration-300 relative overflow-hidden cursor-pointer hover:-translate-y-1 shadow-[4px_4px_0_rgb(15,23,42)] active:translate-y-0 active:shadow-[0_0_0_rgb(15,23,42)] ${card.owned
+                                ? 'bg-green-400 border-slate-900'
+                                : 'bg-white border-slate-900 hover:bg-slate-100'
                                 }`}
                         >
-                            {card.owned && (
-                                <div className="absolute -right-8 -top-8 w-32 h-32 bg-green-400/10 rounded-full blur-xl animate-pulse pointer-events-none"></div>
-                            )}
 
-                            <div className={`p-4 rounded-full relative z-10 transition-colors ${card.owned ? 'bg-green-400 text-white shadow-lg shadow-green-400/50' : 'bg-slate-200 text-slate-400'}`}>
-                                {card.owned ? <CheckCircle size={32} /> : <Circle size={32} />}
+                            <div className={`p-4 rounded-xl border-4 relative z-10 transition-colors shadow-[0_4px_0_rgb(15,23,42)] ${card.owned ? 'bg-white border-slate-900 text-green-500' : 'bg-white border-slate-900 text-slate-400'}`}>
+                                {card.owned ? <CheckCircle size={32} strokeWidth={3} /> : <Circle size={32} strokeWidth={3} />}
                             </div>
                             <div className="relative z-10">
-                                <p className="text-sm font-bold uppercase tracking-wider mb-1 text-slate-500">Estado</p>
-                                <p className={`text-2xl font-black ${card.owned ? 'text-green-600' : 'text-slate-400'}`}>
-                                    {card.owned ? '¡Capturado!' : 'Falta (Click)'}
+                                <p className={`text-sm font-black uppercase tracking-wider mb-1 ${card.owned ? 'text-green-900' : 'text-slate-500'}`}>Status</p>
+                                <p className={`text-2xl font-black uppercase tracking-tight ${card.owned ? 'text-white drop-shadow-[0_2px_0_rgba(0,0,0,0.3)]' : 'text-slate-400'}`}>
+                                    {card.owned ? '¡Capturado!' : 'Falta'}
                                 </p>
                             </div>
                         </div>
@@ -258,9 +263,9 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned, o
                                         onDeleteCard(card.id);
                                     }
                                 }}
-                                className="w-full mt-4 p-4 rounded-3xl bg-red-50 text-red-600 border-2 border-red-200 hover:bg-red-100 hover:border-red-300 font-bold flex items-center justify-center gap-2 transition-colors shadow-sm"
+                                className="w-full mt-6 p-4 rounded-xl bg-red-600 text-white font-black uppercase tracking-widest border-4 border-slate-900 hover:bg-red-500 flex items-center justify-center gap-2 transition-all shadow-[0_4px_0_rgb(15,23,42)] active:translate-y-1 active:shadow-none"
                             >
-                                <Trash size={20} />
+                                <Trash size={20} strokeWidth={3} />
                                 Eliminar Carta
                             </button>
                         )}

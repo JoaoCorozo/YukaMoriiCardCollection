@@ -118,62 +118,61 @@ export const CollectionView: React.FC<CollectionViewProps> = ({
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50 font-sans selection:bg-indigo-300 pb-20">
-            {/* Header */}
-            <header className="sticky top-0 z-30 bg-slate-900 shadow-lg border-b-4 border-indigo-500">
-                <div className="max-w-5xl mx-auto px-4 py-4 sm:py-6 relative overflow-hidden">
-                    <div className="absolute -top-10 -right-10 w-40 h-40 bg-white opacity-5 rounded-full border-8 border-white pointer-events-none"></div>
+        <div className="min-h-screen bg-slate-50 font-sans text-slate-900 pb-20">
+            {/* Pokédex Header */}
+            <header className="sticky top-0 z-30 bg-red-600 border-b-8 border-slate-900 shadow-xl relative">
+                <div className="max-w-6xl mx-auto px-4 py-4 sm:py-6 relative z-10">
 
-                    <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-5 relative z-10">
+                    <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-5">
                         <div className="flex items-center gap-4">
-                            <button onClick={onBack} className="p-2 bg-slate-800 hover:bg-slate-700 rounded-full text-white transition-colors">
-                                <ArrowLeft size={24} />
+                            <button onClick={onBack} className="p-3 bg-slate-900 hover:bg-slate-800 text-white rounded-full border-4 border-slate-900 hover:-translate-x-1 transition-transform shadow-[0_4px_0_rgb(0,0,0,0.3)]">
+                                <ArrowLeft size={24} strokeWidth={3} />
                             </button>
-                            <h1 className="text-2xl sm:text-3xl font-black text-white tracking-tight flex items-center gap-3">
+                            <h1 className="text-2xl sm:text-3xl font-black text-white tracking-wide uppercase flex items-center gap-3 drop-shadow-[0_2px_0_rgba(0,0,0,0.4)]">
                                 {collection.coverImageUrl && (
-                                    <img src={collection.coverImageUrl} alt="Logo" className="w-10 h-10 rounded-full border-2 border-indigo-400 bg-white hidden sm:block object-cover" />
+                                    <img src={collection.coverImageUrl} alt="Logo" className="w-12 h-12 rounded-full border-4 border-slate-900 bg-white hidden sm:block object-cover shadow-[0_2px_0_rgba(0,0,0,0.3)]" />
                                 )}
                                 {collection.title}
                             </h1>
                         </div>
 
-                        <div className="flex flex-col sm:flex-row items-center gap-3">
-                            <div className="flex bg-slate-800 rounded-full p-1 shadow-inner backdrop-blur-sm">
-                                <button onClick={() => setFilter('all')} className={`px-4 py-2 rounded-full text-sm font-bold transition-all ${filter === 'all' ? 'bg-white text-indigo-600 shadow-md' : 'text-slate-300 hover:text-white'}`}>Todas</button>
-                                <button onClick={() => setFilter('owned')} className={`px-4 py-2 rounded-full text-sm font-bold transition-all ${filter === 'owned' ? 'bg-green-400 text-green-950 shadow-md' : 'text-slate-300 hover:text-white'}`}>Tengo</button>
-                                <button onClick={() => setFilter('missing')} className={`px-4 py-2 rounded-full text-sm font-bold transition-all ${filter === 'missing' ? 'bg-slate-700 text-white shadow-md' : 'text-slate-300 hover:text-white'}`}>Faltan</button>
+                        <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+                            <div className="flex bg-slate-900 rounded-xl p-1 shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)] w-full sm:w-auto overflow-hidden">
+                                <button onClick={() => setFilter('all')} className={`flex-1 px-4 py-2 font-black uppercase text-sm transition-colors ${filter === 'all' ? 'bg-white text-slate-900 rounded-lg' : 'text-slate-400 hover:text-white'}`}>Todas</button>
+                                <button onClick={() => setFilter('owned')} className={`flex-1 px-4 py-2 font-black uppercase text-sm transition-colors ${filter === 'owned' ? 'bg-green-400 text-green-950 rounded-lg' : 'text-slate-400 hover:text-white'}`}>Tengo</button>
+                                <button onClick={() => setFilter('missing')} className={`flex-1 px-4 py-2 font-black uppercase text-sm transition-colors ${filter === 'missing' ? 'bg-red-500 text-white rounded-lg' : 'text-slate-400 hover:text-white'}`}>Faltan</button>
                             </div>
 
                             {collection.excelUrl && (
                                 <button
                                     onClick={() => reloadDatabase()}
                                     title="Sincronizar base de datos"
-                                    className="flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-400 text-white rounded-full font-bold shadow-md transition-all active:scale-95 border-2 border-indigo-400"
+                                    className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-400 text-white rounded-xl font-black uppercase shadow-[0_4px_0_rgb(15,23,42)] border-4 border-slate-900 active:translate-y-1 active:shadow-none transition-all w-full sm:w-auto"
                                 >
-                                    <RefreshCw size={16} className={loading ? "animate-spin" : ""} />
-                                    Sincronizar
+                                    <RefreshCw size={18} strokeWidth={3} className={loading ? "animate-spin" : ""} />
+                                    SYNC
                                 </button>
                             )}
                         </div>
                     </div>
 
-                    <div className="relative z-10 max-w-3xl mx-auto flex flex-col sm:flex-row gap-2 mt-4">
+                    <div className="max-w-6xl mx-auto flex flex-col sm:flex-row gap-2 mt-4 relative z-10 w-full pb-2">
                         <div className="relative flex-1">
                             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                <Search className="h-5 w-5 text-slate-400" />
+                                <Search className="h-6 w-6 text-slate-400" strokeWidth={3} />
                             </div>
                             <input
                                 type="text"
                                 placeholder="Buscar carta..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-12 pr-4 py-3 bg-slate-800 border-2 border-slate-700 rounded-2xl text-white text-base font-medium placeholder-slate-400 focus:outline-none focus:border-indigo-500 transition-all shadow-lg"
+                                className="w-full pl-14 pr-4 py-3 bg-white border-4 border-slate-900 rounded-xl text-slate-900 text-base font-black placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-yellow-400 shadow-[0_4px_0_rgba(0,0,0,0.2)]"
                             />
                         </div>
                         <select
                             value={sortBy}
                             onChange={(e) => setSortBy(e.target.value as any)}
-                            className="px-4 py-3 bg-slate-800 border-2 border-slate-700 rounded-2xl text-white text-sm font-bold focus:outline-none focus:border-indigo-500 shadow-lg cursor-pointer"
+                            className="px-4 py-3 bg-white border-4 border-slate-900 rounded-xl text-slate-900 text-base font-black focus:outline-none focus:ring-4 focus:ring-yellow-400 shadow-[0_4px_0_rgba(0,0,0,0.2)] cursor-pointer"
                         >
                             <option value="name-asc">🔤 Nombre (A - Z)</option>
                             <option value="name-desc">🔤 Nombre (Z - A)</option>
@@ -186,26 +185,26 @@ export const CollectionView: React.FC<CollectionViewProps> = ({
 
             <main className="max-w-5xl mx-auto px-4 py-8">
                 {/* Stats */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                    <div className="bg-white p-4 rounded-3xl shadow-sm border border-slate-100 flex items-center gap-3">
-                        <div className="bg-blue-100 p-2 rounded-xl text-blue-600"><Library size={24} /></div>
+                <div className="grid grid-cols-3 gap-4 mb-8">
+                    <div className="bg-blue-50 p-4 rounded-2xl border-4 border-slate-900 shadow-[4px_4px_0_rgb(15,23,42)] flex items-center gap-3">
+                        <div className="bg-blue-500 p-2.5 rounded-xl text-white border-2 border-slate-900"><Library size={24} strokeWidth={3} /></div>
                         <div>
-                            <p className="text-xs text-slate-500 font-bold uppercase">Total</p>
-                            <p className="text-xl font-black text-slate-800">{stats.percentage}%</p>
+                            <p className="text-xs text-blue-800 font-black uppercase">Progreso</p>
+                            <p className="text-2xl font-black text-slate-900">{stats.percentage}%</p>
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-3xl shadow-sm border border-slate-100 flex items-center gap-3">
-                        <div className="bg-green-100 p-2 rounded-xl text-green-600"><CheckCircle size={24} /></div>
+                    <div className="bg-green-50 p-4 rounded-2xl border-4 border-slate-900 shadow-[4px_4px_0_rgb(15,23,42)] flex items-center gap-3">
+                        <div className="bg-green-500 p-2.5 rounded-xl text-white border-2 border-slate-900"><CheckCircle size={24} strokeWidth={3} /></div>
                         <div>
-                            <p className="text-xs text-green-600 font-bold uppercase">Obtenidas</p>
-                            <p className="text-xl font-black text-slate-800">{stats.owned} <span className="text-xs text-slate-400">/ {stats.total}</span></p>
+                            <p className="text-xs text-green-800 font-black uppercase">Obtenidas</p>
+                            <p className="text-2xl font-black text-slate-900">{stats.owned} <span className="text-sm text-slate-500">/ {stats.total}</span></p>
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-3xl shadow-sm border border-slate-100 flex items-center gap-3">
-                        <div className="bg-red-100 p-2 rounded-xl text-red-600"><XCircle size={24} /></div>
+                    <div className="bg-red-50 p-4 rounded-2xl border-4 border-slate-900 shadow-[4px_4px_0_rgb(15,23,42)] flex items-center gap-3">
+                        <div className="bg-red-500 p-2.5 rounded-xl text-white border-2 border-slate-900"><XCircle size={24} strokeWidth={3} /></div>
                         <div>
-                            <p className="text-xs text-red-600 font-bold uppercase">Faltantes</p>
-                            <p className="text-xl font-black text-slate-800">{stats.missing}</p>
+                            <p className="text-xs text-red-800 font-black uppercase">Faltantes</p>
+                            <p className="text-2xl font-black text-slate-900">{stats.missing}</p>
                         </div>
                     </div>
                 </div>
@@ -216,24 +215,24 @@ export const CollectionView: React.FC<CollectionViewProps> = ({
                         {!showAddForm ? (
                             <button
                                 onClick={() => setShowAddForm(true)}
-                                className="w-full py-4 border-2 border-dashed border-indigo-300 rounded-3xl text-indigo-600 font-bold flex justify-center items-center gap-2 hover:bg-indigo-50 transition-colors"
+                                className="w-full py-5 border-4 border-dashed border-slate-400 hover:border-slate-900 rounded-3xl text-slate-600 font-black uppercase flex justify-center items-center gap-3 hover:bg-slate-200 hover:text-slate-900 transition-all"
                             >
-                                <PlusCircle /> Agregar Carta Manualmente
+                                <PlusCircle size={24} strokeWidth={3} /> Agregar Carta Manualmente
                             </button>
                         ) : (
-                            <form onSubmit={handleAddSubmit} className="bg-white p-6 rounded-3xl shadow-xl border-2 border-indigo-100 flex flex-col gap-4">
-                                <h3 className="text-lg font-bold text-slate-800">Nueva Carta</h3>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <input required placeholder="Nombre del Pokémon" value={newCard.pokemon} onChange={e => setNewCard({ ...newCard, pokemon: e.target.value })} className="p-3 border rounded-xl bg-slate-50 text-slate-800 border-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
-                                    <input required placeholder="Set/Expansión" value={newCard.set} onChange={e => setNewCard({ ...newCard, set: e.target.value })} className="p-3 border rounded-xl bg-slate-50 text-slate-800 border-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
-                                    <input placeholder="Número (ej. 001/198)" value={newCard.number} onChange={e => setNewCard({ ...newCard, number: e.target.value })} className="p-3 border rounded-xl bg-slate-50 text-slate-800 border-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
-                                    <input placeholder="Rareza (ej. Común, Rara)" value={newCard.rarity} onChange={e => setNewCard({ ...newCard, rarity: e.target.value })} className="p-3 border rounded-xl bg-slate-50 text-slate-800 border-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
-                                    <input placeholder="Variante (ej. Holo, Reverse)" value={newCard.variant} onChange={e => setNewCard({ ...newCard, variant: e.target.value })} className="p-3 border rounded-xl bg-slate-50 text-slate-800 border-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
-                                    <input placeholder="URL de Imagen Fija" value={newCard.imageUrl} onChange={e => setNewCard({ ...newCard, imageUrl: e.target.value })} className="p-3 border rounded-xl bg-slate-50 text-slate-800 border-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 sm:col-span-2" />
+                            <form onSubmit={handleAddSubmit} className="bg-yellow-50 p-6 rounded-2xl shadow-[8px_8px_0_rgb(15,23,42)] border-4 border-slate-900 flex flex-col gap-4">
+                                <h3 className="text-xl font-black uppercase text-slate-800 border-b-4 border-slate-900 pb-2 inline-block w-fit">Nueva Carta</h3>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                                    <input required placeholder="Nombre del Pokémon" value={newCard.pokemon} onChange={e => setNewCard({ ...newCard, pokemon: e.target.value })} className="p-3 border-4 rounded-xl bg-white text-slate-800 border-slate-900 font-bold placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-yellow-400" />
+                                    <input required placeholder="Set/Expansión" value={newCard.set} onChange={e => setNewCard({ ...newCard, set: e.target.value })} className="p-3 border-4 rounded-xl bg-white text-slate-800 border-slate-900 font-bold placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-yellow-400" />
+                                    <input placeholder="Número (ej. 001/198)" value={newCard.number} onChange={e => setNewCard({ ...newCard, number: e.target.value })} className="p-3 border-4 rounded-xl bg-white text-slate-800 border-slate-900 font-bold placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-yellow-400" />
+                                    <input placeholder="Rareza (ej. Común, Rara)" value={newCard.rarity} onChange={e => setNewCard({ ...newCard, rarity: e.target.value })} className="p-3 border-4 rounded-xl bg-white text-slate-800 border-slate-900 font-bold placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-yellow-400" />
+                                    <input placeholder="Variante (ej. Holo, Reverse)" value={newCard.variant} onChange={e => setNewCard({ ...newCard, variant: e.target.value })} className="p-3 border-4 rounded-xl bg-white text-slate-800 border-slate-900 font-bold placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-yellow-400" />
+                                    <input placeholder="URL de Imagen Fija" value={newCard.imageUrl} onChange={e => setNewCard({ ...newCard, imageUrl: e.target.value })} className="p-3 border-4 rounded-xl bg-white text-slate-800 border-slate-900 font-bold placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-yellow-400 sm:col-span-2" />
                                 </div>
-                                <div className="flex gap-3 justify-end mt-2">
-                                    <button type="button" onClick={() => setShowAddForm(false)} className="px-5 py-2 font-bold text-slate-500 hover:bg-slate-100 rounded-xl">Cancelar</button>
-                                    <button type="submit" className="px-5 py-2 font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-md">Guardar</button>
+                                <div className="flex gap-4 justify-end mt-4">
+                                    <button type="button" onClick={() => setShowAddForm(false)} className="px-6 py-3 font-black uppercase text-slate-900 bg-white border-4 border-slate-900 hover:bg-slate-200 rounded-xl shadow-[0_4px_0_rgb(15,23,42)] active:translate-y-1 active:shadow-none transition-all">Cancelar</button>
+                                    <button type="submit" className="px-6 py-3 font-black uppercase text-white bg-blue-500 border-4 border-slate-900 hover:bg-blue-600 rounded-xl shadow-[0_4px_0_rgb(15,23,42)] active:translate-y-1 active:shadow-none transition-all">Guardar</button>
                                 </div>
                             </form>
                         )}
