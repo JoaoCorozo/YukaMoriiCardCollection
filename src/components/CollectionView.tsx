@@ -266,8 +266,11 @@ export const CollectionView: React.FC<CollectionViewProps> = ({
             </main>
 
             <CardDetailModal
-                card={selectedCard}
+                cards={filteredCards}
+                initialCardId={selectedCard?.id || null}
                 onClose={() => setSelectedCard(null)}
+                // We keep onToggleOwned by id exactly the same, 
+                // since the modal passes the specific card.id
                 onToggleOwned={(id) => {
                     toggleOwnership(id);
                     if (selectedCard?.id === id) {

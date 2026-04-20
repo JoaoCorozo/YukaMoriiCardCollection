@@ -1,9 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import type { PokemonCard } from '../types/PokemonCard';
-import { X, CheckCircle, Circle, MapPin, Hash, Star, LayoutList, UploadCloud, Trash, Edit2, Save, XCircle } from 'lucide-react';
+import { X, CheckCircle, Circle, MapPin, Hash, Star, LayoutList, UploadCloud, Trash, Edit2, Save, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface CardDetailProps {
-    card: PokemonCard | null;
+    cards: PokemonCard[];
+    initialCardId: string | null;
     onClose: () => void;
     onUpdateImage: (id: string, imageUrl: string) => void;
     onToggleOwned: (id: string) => void;
@@ -11,17 +12,33 @@ interface CardDetailProps {
     onEditCard?: (id: string, updatedFields: Partial<PokemonCard>) => void;
 }
 
-export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned, onDeleteCard, onEditCard }: CardDetailProps) => {
+export const CardDetailModal = ({ cards, initialCardId, onClose, onUpdateImage, onToggleOwned, onDeleteCard, onEditCard }: CardDetailProps) => {
     const fileInputRef = useRef<HTMLInputElement>(null);
+    
+    const [currentIndex, setCurrentIndex] = useState(-1);
+    const [showDetails, setShowDetails] = useState(false);
+    
     const [isEditing, setIsEditing] = useState(false);
     const [editedCard, setEditedCard] = useState<Partial<PokemonCard>>({});
 
     useEffect(() => {
-        setIsEditing(false);
-        setEditedCard({});
-    }, [card]);
+        if (initialCardId && cards.length > 0) {
+            const index = cards.findIndex(c => c.id === initialCardId);
+            setCurrentIndex(index >= 0 ? index : -1);
+        } else {
+            setCurrentIndex(-1);
+        }
+    }, [initialCardId, cards]);
 
-    if (!card) return null;
+    useEffect(() => {
+        setIsEditing(false);
+        setShowDetails(false);
+        setEditedCard({});
+    }, [currentIndex]);
+
+    if (currentIndex < 0 || cards.length === 0) return null;
+
+    const card = cards[currentIndex];
 
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -36,241 +53,246 @@ export const CardDetailModal = ({ card, onClose, onUpdateImage, onToggleOwned, o
         }
     };
 
-    const removeImage = () => {
+    const removeImage = (e?: React.MouseEvent) => {
+        e?.stopPropagation();
         onUpdateImage(card.id, '');
     };
 
-    return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm" onClick={onClose}>
-            <div
-                className="bg-white rounded-3xl w-full max-w-md max-h-[90vh] overflow-y-auto shadow-[12px_12px_0_rgb(15,23,42)] animate-fade-in-up border-4 border-slate-900 relative"
-                onClick={(e) => e.stopPropagation()}
-            >
+    const handleNext = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (currentIndex < cards.length - 1) {
+            setCurrentIndex(currentIndex + 1);
+        }
+    };
 
-                {/* Header Ribbon */}
-                <div className="absolute top-0 inset-x-0 h-24 bg-red-600 rounded-t-[1.3rem] border-b-4 border-slate-900 -z-10"></div>
-                <div className="absolute top-0 right-0 p-4 z-20 flex gap-3">
-                    {onEditCard && !isEditing && (
-                        <button
-                            onClick={() => {
-                                setIsEditing(true);
-                                setEditedCard({
-                                    pokemon: card.pokemon,
-                                    set: card.set,
-                                    number: card.number,
-                                    rarity: card.rarity,
-                                    variant: card.variant,
-                                    imageUrl: card.imageUrl
-                                });
+    const handlePrev = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (currentIndex > 0) {
+            setCurrentIndex(currentIndex - 1);
+        }
+    };
+
+    return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-slate-950/95 backdrop-blur-md" onClick={onClose}>
+            {/* Global Close Button */}
+            <button 
+                onClick={onClose} 
+                className="absolute top-4 right-4 sm:top-8 sm:right-8 z-50 p-3 sm:p-4 rounded-full bg-slate-800 text-slate-300 hover:bg-red-500 hover:text-white transition-all shadow-[4px_4px_0_rgb(0,0,0)] border-2 border-slate-900"
+            >
+                <X size={28} strokeWidth={3} />
+            </button>
+
+            {/* Prev Button */}
+            {currentIndex > 0 && (
+                <button 
+                    onClick={handlePrev} 
+                    className="absolute left-2 sm:left-8 top-1/2 -translate-y-1/2 z-40 p-3 sm:p-5 rounded-full bg-slate-800 text-white hover:bg-yellow-400 hover:text-slate-900 border-4 border-slate-900 transition-all shadow-[4px_4px_0_rgb(0,0,0)] hover:-translate-x-1"
+                >
+                    <ChevronLeft size={32} strokeWidth={4} />
+                </button>
+            )}
+
+            {/* Next Button */}
+            {currentIndex < cards.length - 1 && (
+                <button 
+                    onClick={handleNext} 
+                    className="absolute right-2 sm:right-8 top-1/2 -translate-y-1/2 z-40 p-3 sm:p-5 rounded-full bg-slate-800 text-white hover:bg-yellow-400 hover:text-slate-900 border-4 border-slate-900 transition-all shadow-[4px_4px_0_rgb(0,0,0)] hover:translate-x-1"
+                >
+                    <ChevronRight size={32} strokeWidth={4} />
+                </button>
+            )}
+
+            {/* Main Card Container */}
+            <div 
+                className="w-full max-w-sm md:max-w-md lg:max-w-lg aspect-[63/88] relative cursor-pointer group"
+                onClick={(e) => { e.stopPropagation(); setShowDetails(!showDetails); }}
+            >
+                {/* The Card Background/Border */}
+                <div className="absolute inset-0 w-full h-full rounded-3xl bg-slate-200 border-8 border-slate-900 shadow-[8px_8px_0_rgb(15,23,42),0_0_50px_rgba(250,204,21,0.2)] flex items-center justify-center p-2 sm:p-4 overflow-hidden">
+                    
+                    {/* The Image */}
+                    {card.imageUrl ? (
+                         <img 
+                            src={card.imageUrl} 
+                            alt={card.pokemon} 
+                            className="w-full h-full object-contain pointer-events-none select-none z-10" 
+                            onError={(e) => {
+                                e.currentTarget.onerror = null;
+                                e.currentTarget.src = '/reverso.jpeg';
                             }}
-                            className="p-2 rounded-xl bg-white border-4 border-slate-900 text-slate-900 hover:bg-yellow-400 hover:-translate-y-1 transition-all shadow-[0_4px_0_rgb(15,23,42)]"
-                            title="Editar"
+                        />
+                    ) : (
+                         <img 
+                            src="/reverso.jpeg" 
+                            alt="Reverso" 
+                            className="w-full h-full object-cover pointer-events-none select-none opacity-80 mix-blend-multiply z-10" 
+                        />
+                    )}
+
+                    {/* Camera Button (Only visible if no details overlay) */}
+                    {!showDetails && (
+                        <button
+                            onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click(); }}
+                            className={`absolute bottom-4 right-4 z-20 p-4 bg-blue-500 text-white rounded-full border-4 border-slate-900 shadow-[4px_4px_0_rgb(15,23,42)] hover:bg-blue-400 transition-all ${card.imageUrl ? 'opacity-0 group-hover:opacity-100' : 'animate-bounce'}`}
+                            title="Subir foto"
                         >
-                            <Edit2 size={24} strokeWidth={3} />
+                            <UploadCloud size={24} strokeWidth={3} />
                         </button>
                     )}
-                    <button
-                        onClick={onClose}
-                        className="p-2 rounded-xl bg-white border-4 border-slate-900 text-slate-900 hover:bg-red-500 hover:text-white hover:-translate-y-1 transition-all shadow-[0_4px_0_rgb(15,23,42)]"
-                    >
-                        <X size={24} strokeWidth={3} />
-                    </button>
-                </div>
-
-                {/* Content */}
-                <div className="p-8 pt-6 space-y-6 relative z-10 mt-6 font-sans">
-
-                    <div className="text-center relative">
-                        <div className="w-40 h-56 mx-auto bg-slate-200 rounded-xl flex items-center justify-center mb-6 shadow-[inset_0_4px_4px_rgba(0,0,0,0.1)] border-4 border-slate-900 relative overflow-hidden group">
-                            {card.imageUrl ? (
-                                <>
-                                    <img 
-                                        src={card.imageUrl} 
-                                        alt={card.pokemon} 
-                                        className="w-full h-full object-contain p-2" 
-                                        onError={(e) => {
-                                            e.currentTarget.onerror = null;
-                                            e.currentTarget.src = '/reverso.jpeg';
-                                            e.currentTarget.className = "w-full h-full object-contain p-2 opacity-90";
-                                        }}
-                                    />
-                                    <button
-                                        onClick={removeImage}
-                                        className="absolute top-2 right-2 p-2 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                                        title="Eliminar foto"
-                                    >
-                                        <Trash size={16} />
-                                    </button>
-                                </>
-                            ) : (
-                                <div className="absolute inset-0 flex items-center justify-center bg-slate-100 group">
-                                    <img 
-                                        src="/reverso.jpeg" 
-                                        alt="Reverso de carta" 
-                                        className="w-full h-full object-contain p-2 opacity-90"
-                                        onError={(e) => e.currentTarget.style.display = 'none'}
-                                    />
-                                </div>
-                            )}
-
-                            <button
-                                onClick={() => fileInputRef.current?.click()}
-                                className={`absolute bottom-3 right-3 p-3 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 hover:scale-105 transition-all ${card.imageUrl ? 'opacity-0 group-hover:opacity-100' : ''}`}
-                                title="Subir foto"
-                            >
-                                <UploadCloud size={20} />
-                            </button>
-                            <input
-                                type="file"
-                                ref={fileInputRef}
-                                onChange={handleImageUpload}
-                                accept="image/*"
-                                className="hidden"
-                            />
-                        </div>
-
-                        {isEditing ? (
-                            <div className="flex flex-col items-center gap-3 mb-4 mt-4">
-                                <input
-                                    value={editedCard.pokemon || ''}
-                                    onChange={e => setEditedCard({ ...editedCard, pokemon: e.target.value })}
-                                    className="text-2xl font-black text-center text-slate-900 bg-white border-4 border-slate-900 rounded-xl p-3 w-full focus:outline-none focus:ring-4 focus:ring-yellow-400 uppercase"
-                                    placeholder="Nombre del Pokémon"
-                                />
-                                <input
-                                    value={editedCard.imageUrl || ''}
-                                    onChange={e => setEditedCard({ ...editedCard, imageUrl: e.target.value })}
-                                    className="text-sm font-bold text-center text-slate-900 bg-white border-4 border-slate-900 rounded-xl p-3 w-full focus:outline-none focus:ring-4 focus:ring-yellow-400 mt-2"
-                                    placeholder="URL de Imagen Fija"
-                                />
-                            </div>
-                        ) : (
-                            <>
-                                <h1 className="text-3xl font-black text-slate-900 uppercase drop-shadow-[0_2px_0_rgba(0,0,0,0.2)] mb-2 mt-4 tracking-tight">
-                                    {card.pokemon}
-                                </h1>
-                            </>
-                        )}
-                    </div>
-
-                    <div className="space-y-4 pt-4">
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="bg-yellow-50 p-4 rounded-xl border-4 border-slate-900 shadow-[4px_4px_0_rgb(15,23,42)] flex flex-col gap-1 items-start">
-                                <div className="flex items-center gap-2 text-yellow-600 mb-1">
-                                    <MapPin size={20} strokeWidth={3} />
-                                    <p className="text-xs font-black uppercase tracking-widest text-slate-900">Set</p>
-                                </div>
-                                <div className="w-full">
-                                    {isEditing ? (
-                                        <input value={editedCard.set || ''} onChange={e => setEditedCard({ ...editedCard, set: e.target.value })} className="w-full font-black text-sm p-2 rounded-lg border-2 border-slate-900 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
-                                    ) : (
-                                        <p className="text-slate-900 font-black text-lg uppercase leading-tight truncate" title={card.set}>{card.set}</p>
-                                    )}
-                                </div>
-                            </div>
-                            <div className="bg-blue-50 p-4 rounded-xl border-4 border-slate-900 shadow-[4px_4px_0_rgb(15,23,42)] flex flex-col gap-1 items-start">
-                                <div className="flex items-center gap-2 text-blue-600 mb-1">
-                                    <Hash size={20} strokeWidth={3} />
-                                    <p className="text-xs font-black uppercase tracking-widest text-slate-900">Número</p>
-                                </div>
-                                <div className="w-full">
-                                    {isEditing ? (
-                                        <input value={editedCard.number || ''} onChange={e => setEditedCard({ ...editedCard, number: e.target.value })} className="w-full font-black text-sm p-2 rounded-lg border-2 border-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-400" />
-                                    ) : (
-                                        <p className="text-slate-900 font-black text-lg uppercase leading-tight">{card.number}</p>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="bg-green-50 p-4 rounded-xl border-4 border-slate-900 shadow-[4px_4px_0_rgb(15,23,42)] flex flex-col gap-1 items-start">
-                                <div className="flex items-center gap-2 text-green-600 mb-1">
-                                    <Star size={20} strokeWidth={3} />
-                                    <p className="text-xs font-black uppercase tracking-widest text-slate-900">Rareza</p>
-                                </div>
-                                <div className="w-full">
-                                    {isEditing ? (
-                                        <input value={editedCard.rarity || ''} onChange={e => setEditedCard({ ...editedCard, rarity: e.target.value })} className="w-full font-black text-sm p-2 rounded-lg border-2 border-slate-900 focus:outline-none focus:ring-2 focus:ring-green-400" />
-                                    ) : (
-                                        <p className="text-slate-900 font-black uppercase leading-tight truncate" title={card.rarity}>{card.rarity}</p>
-                                    )}
-                                </div>
-                            </div>
-                            <div className="bg-pink-50 p-4 rounded-xl border-4 border-slate-900 shadow-[4px_4px_0_rgb(15,23,42)] flex flex-col gap-1 items-start">
-                                <div className="flex items-center gap-2 text-pink-600 mb-1">
-                                    <LayoutList size={20} strokeWidth={3} />
-                                    <p className="text-xs font-black uppercase tracking-widest text-slate-900">Variante</p>
-                                </div>
-                                <div className="w-full">
-                                    {isEditing ? (
-                                        <input value={editedCard.variant || ''} onChange={e => setEditedCard({ ...editedCard, variant: e.target.value })} className="w-full font-black text-sm p-2 rounded-lg border-2 border-slate-900 focus:outline-none focus:ring-2 focus:ring-pink-400" />
-                                    ) : (
-                                        <p className="text-slate-900 font-black uppercase leading-tight truncate" title={card.variant}>{card.variant || 'N/A'}</p>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-
-                        {isEditing && (
-                            <div className="flex gap-4 mt-4 overflow-hidden p-1">
-                                <button
-                                    onClick={() => setIsEditing(false)}
-                                    className="flex-1 p-3 rounded-xl bg-white border-4 border-slate-900 text-slate-900 font-black uppercase tracking-wide flex items-center justify-center gap-2 hover:bg-slate-200 transition-all shadow-[0_4px_0_rgb(15,23,42)] active:translate-y-1 active:shadow-none"
-                                >
-                                    <XCircle size={20} strokeWidth={3} />
-                                    Cancelar
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        if (onEditCard) {
-                                            onEditCard(card.id, editedCard);
-                                        }
-                                        setIsEditing(false);
-                                    }}
-                                    className="flex-1 p-3 rounded-xl bg-blue-500 border-4 border-slate-900 text-white font-black uppercase tracking-wide flex items-center justify-center gap-2 hover:bg-blue-400 transition-all shadow-[0_4px_0_rgb(15,23,42)] active:translate-y-1 active:shadow-none"
-                                >
-                                    <Save size={20} strokeWidth={3} />
-                                    Guardar Cambios
-                                </button>
-                            </div>
-                        )}
-
-                        {/* Collection Status with animated backdrop */}
-                        <div
-                            onClick={() => onToggleOwned(card.id)}
-                            className={`mt-8 p-5 rounded-xl border-4 flex items-center gap-4 transition-all duration-300 relative overflow-hidden cursor-pointer hover:-translate-y-1 shadow-[4px_4px_0_rgb(15,23,42)] active:translate-y-0 active:shadow-[0_0_0_rgb(15,23,42)] ${card.owned
-                                ? 'bg-green-400 border-slate-900'
-                                : 'bg-white border-slate-900 hover:bg-slate-100'
-                                }`}
+                    
+                    {!showDetails && card.imageUrl && (
+                        <button
+                            onClick={removeImage}
+                            className="absolute top-4 right-4 z-20 p-3 bg-red-500 text-white rounded-full border-4 border-slate-900 shadow-[4px_4px_0_rgb(15,23,42)] hover:bg-red-400 opacity-0 group-hover:opacity-100 transition-all"
+                            title="Borrar foto"
                         >
+                            <Trash size={18} strokeWidth={3} />
+                        </button>
+                    )}
 
-                            <div className={`p-4 rounded-xl border-4 relative z-10 transition-colors shadow-[0_4px_0_rgb(15,23,42)] ${card.owned ? 'bg-white border-slate-900 text-green-500' : 'bg-white border-slate-900 text-slate-400'}`}>
-                                {card.owned ? <CheckCircle size={32} strokeWidth={3} /> : <Circle size={32} strokeWidth={3} />}
-                            </div>
-                            <div className="relative z-10">
-                                <p className={`text-sm font-black uppercase tracking-wider mb-1 ${card.owned ? 'text-green-900' : 'text-slate-500'}`}>Estado de Captura</p>
-                                <p className={`text-2xl font-black uppercase tracking-tight ${card.owned ? 'text-white drop-shadow-[0_2px_0_rgba(0,0,0,0.3)]' : 'text-slate-400'}`}>
-                                    {card.owned ? '¡Ya la tienes!' : 'Aún te falta'}
-                                </p>
-                            </div>
-                        </div>
+                    <input
+                        type="file"
+                        ref={fileInputRef}
+                        onChange={handleImageUpload}
+                        accept="image/*"
+                        className="hidden"
+                    />
 
-                        {onDeleteCard && (
+                    {/* Dark Overlay (The Details) */}
+                    <div 
+                        className={`absolute inset-0 bg-slate-900/90 backdrop-blur-md z-30 p-6 flex flex-col overflow-y-auto transition-opacity duration-300 ease-in-out cursor-default ${showDetails ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+                        onClick={(e) => e.stopPropagation()} /* so click inside doesn't toggle off immediately if they click a button */
+                    >
+                        {/* Internal Close overlay button */}
+                        <button onClick={() => setShowDetails(false)} className="absolute top-4 right-4 p-2 bg-slate-800 text-white rounded-full border-2 border-slate-700 hover:bg-slate-700">
+                            <X size={20} strokeWidth={3} />
+                        </button>
+
+                        {/* Edit top-left */}
+                        {onEditCard && !isEditing && (
                             <button
                                 onClick={() => {
+                                    setIsEditing(true);
+                                    setEditedCard({
+                                        pokemon: card.pokemon,
+                                        set: card.set,
+                                        number: card.number,
+                                        rarity: card.rarity,
+                                        variant: card.variant,
+                                        imageUrl: card.imageUrl
+                                    });
+                                }}
+                                className="absolute top-4 left-4 p-2 bg-yellow-400 text-yellow-950 rounded-full border-2 border-yellow-500 hover:bg-yellow-300 shadow-[2px_2px_0_rgb(0,0,0)]"
+                                title="Editar Datos"
+                            >
+                                <Edit2 size={20} strokeWidth={3} />
+                            </button>
+                        )}
+
+                        <div className="mt-10 mb-6 text-center">
+                            {isEditing ? (
+                                <div className="flex flex-col gap-3 px-4">
+                                    <input
+                                        value={editedCard.pokemon || ''}
+                                        onChange={e => setEditedCard({ ...editedCard, pokemon: e.target.value })}
+                                        className="text-2xl font-black text-center text-slate-900 bg-white border-4 border-slate-900 rounded-xl p-3 w-full focus:outline-none uppercase"
+                                        placeholder="Nombre"
+                                    />
+                                    <input
+                                        value={editedCard.imageUrl || ''}
+                                        onChange={e => setEditedCard({ ...editedCard, imageUrl: e.target.value })}
+                                        className="text-sm font-bold text-center text-slate-900 bg-white border-4 border-slate-900 rounded-xl p-3 w-full focus:outline-none"
+                                        placeholder="URL de Imagen Fija"
+                                    />
+                                </div>
+                            ) : (
+                                <h2 className="text-4xl font-black text-white uppercase tracking-tight drop-shadow-[0_4px_0_rgb(0,0,0)]">{card.pokemon}</h2>
+                            )}
+                        </div>
+
+                        {/* Status Toggle Big Button */}
+                        <div
+                            onClick={(e) => { e.stopPropagation(); onToggleOwned(card.id); }}
+                            className={`mb-6 p-4 rounded-2xl border-4 cursor-pointer transition-transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-4 shadow-[4px_4px_0_rgb(0,0,0)] ${card.owned ? 'bg-green-500 border-slate-900 text-white' : 'bg-slate-800 border-slate-600 text-slate-400 hover:bg-slate-700'}`}
+                        >
+                            {card.owned ? <CheckCircle size={32} strokeWidth={3} /> : <Circle size={32} strokeWidth={3} />}
+                            <div className="text-left">
+                                <p className="text-xs font-black uppercase tracking-widest opacity-80">Estado de Captura</p>
+                                <p className="text-2xl font-black uppercase tracking-tighter">{card.owned ? '¡Ya la tienes!' : 'Aún te falta'}</p>
+                            </div>
+                        </div>
+
+                        {/* Data Grid */}
+                        <div className="grid grid-cols-2 gap-3 mb-6 flex-1">
+                            {/* Set */}
+                            <div className="bg-slate-800 p-3 rounded-xl border-2 border-slate-700 flex flex-col gap-1">
+                                <p className="text-xs font-black uppercase text-slate-400 flex items-center gap-1"><MapPin size={14}/> Set</p>
+                                {isEditing ? (
+                                    <input value={editedCard.set || ''} onChange={e => setEditedCard({ ...editedCard, set: e.target.value })} className="w-full font-black text-sm p-2 rounded text-slate-900" />
+                                ) : (
+                                    <p className="text-white font-black uppercase truncate" title={card.set}>{card.set}</p>
+                                )}
+                            </div>
+                            
+                            {/* Number */}
+                            <div className="bg-slate-800 p-3 rounded-xl border-2 border-slate-700 flex flex-col gap-1">
+                                <p className="text-xs font-black uppercase text-slate-400 flex items-center gap-1"><Hash size={14}/> Número</p>
+                                {isEditing ? (
+                                    <input value={editedCard.number || ''} onChange={e => setEditedCard({ ...editedCard, number: e.target.value })} className="w-full font-black text-sm p-2 rounded text-slate-900" />
+                                ) : (
+                                    <p className="text-white font-black uppercase">{card.number}</p>
+                                )}
+                            </div>
+
+                            {/* Rarity */}
+                            <div className="bg-slate-800 p-3 rounded-xl border-2 border-slate-700 flex flex-col gap-1">
+                                <p className="text-xs font-black uppercase text-slate-400 flex items-center gap-1"><Star size={14}/> Rareza</p>
+                                {isEditing ? (
+                                    <input value={editedCard.rarity || ''} onChange={e => setEditedCard({ ...editedCard, rarity: e.target.value })} className="w-full font-black text-sm p-2 rounded text-slate-900" />
+                                ) : (
+                                    <p className="text-white font-black uppercase truncate" title={card.rarity}>{card.rarity}</p>
+                                )}
+                            </div>
+
+                            {/* Variant */}
+                            <div className="bg-slate-800 p-3 rounded-xl border-2 border-slate-700 flex flex-col gap-1">
+                                <p className="text-xs font-black uppercase text-slate-400 flex items-center gap-1"><LayoutList size={14}/> Variante</p>
+                                {isEditing ? (
+                                    <input value={editedCard.variant || ''} onChange={e => setEditedCard({ ...editedCard, variant: e.target.value })} className="w-full font-black text-sm p-2 rounded text-slate-900" />
+                                ) : (
+                                    <p className="text-white font-black uppercase truncate" title={card.variant}>{card.variant || 'N/A'}</p>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Edit Buttons */}
+                        {isEditing && (
+                            <div className="flex gap-3 mb-4">
+                                <button onClick={() => setIsEditing(false)} className="flex-1 p-3 rounded-xl bg-slate-700 text-white font-black uppercase hover:bg-slate-600 transition-colors">
+                                    Cancelar
+                                </button>
+                                <button onClick={() => { if (onEditCard) onEditCard(card.id, editedCard); setIsEditing(false); }} className="flex-1 p-3 rounded-xl bg-blue-500 border-2 border-blue-400 text-white font-black uppercase hover:bg-blue-400 shadow-[2px_2px_0_rgb(0,0,0)] flex justify-center items-center gap-2">
+                                    <Save size={18} strokeWidth={3}/> Guar.
+                                </button>
+                            </div>
+                        )}
+
+                        {/* Delete Button */}
+                        {onDeleteCard && !isEditing && (
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
                                     if (window.confirm("¿Seguro que deseas eliminar esta carta de la colección?")) {
                                         onDeleteCard(card.id);
                                     }
                                 }}
-                                className="w-full mt-6 p-4 rounded-xl bg-red-600 text-white font-black uppercase tracking-widest border-4 border-slate-900 hover:bg-red-500 flex items-center justify-center gap-2 transition-all shadow-[0_4px_0_rgb(15,23,42)] active:translate-y-1 active:shadow-none"
+                                className="w-full p-4 rounded-xl bg-red-600 text-white font-black uppercase border-4 border-slate-900 hover:bg-red-500 flex items-center justify-center gap-2 transition-transform active:translate-y-1 shadow-[4px_4px_0_rgb(0,0,0)]"
                             >
                                 <Trash size={20} strokeWidth={3} />
                                 Soltar Carta
                             </button>
                         )}
                     </div>
-
                 </div>
             </div>
         </div>
