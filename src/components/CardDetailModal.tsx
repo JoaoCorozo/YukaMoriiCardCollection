@@ -15,28 +15,28 @@ interface CardDetailProps {
 export const CardDetailModal = ({ cards, initialCardId, onClose, onUpdateImage, onToggleOwned, onDeleteCard, onEditCard }: CardDetailProps) => {
     const fileInputRef = useRef<HTMLInputElement>(null);
     
-    const [currentIndex, setCurrentIndex] = useState(-1);
+    const [viewedId, setViewedId] = useState<string | null>(null);
     const [showDetails, setShowDetails] = useState(false);
     
     const [isEditing, setIsEditing] = useState(false);
     const [editedCard, setEditedCard] = useState<Partial<PokemonCard>>({});
 
     useEffect(() => {
-        if (initialCardId && cards.length > 0) {
-            const index = cards.findIndex(c => c.id === initialCardId);
-            setCurrentIndex(index >= 0 ? index : -1);
-        } else {
-            setCurrentIndex(-1);
-        }
-    }, [initialCardId, cards]);
+        setViewedId(initialCardId);
+    }, [initialCardId]);
 
     useEffect(() => {
         setIsEditing(false);
-        setShowDetails(false);
-        setEditedCard({});
-    }, [currentIndex]);
+        // Only hide details if we completely change card, not when it updates (like ownership)
+        // Actually, changing ownership doesn't change viewedId, so it stays open! Perfect.
+    }, [viewedId]);
 
-    if (currentIndex < 0 || cards.length === 0) return null;
+    const currentIndex = viewedId ? cards.findIndex(c => c.id === viewedId) : -1;
+
+    if (currentIndex < 0 || cards.length === 0) {
+        // If it was filtered out, we should render nothing (or let CollectionView handle it)
+        return null;
+    }
 
     const card = cards[currentIndex];
 
@@ -61,14 +61,16 @@ export const CardDetailModal = ({ cards, initialCardId, onClose, onUpdateImage, 
     const handleNext = (e: React.MouseEvent) => {
         e.stopPropagation();
         if (currentIndex < cards.length - 1) {
-            setCurrentIndex(currentIndex + 1);
+            setViewedId(cards[currentIndex + 1].id);
+            setShowDetails(false);
         }
     };
 
     const handlePrev = (e: React.MouseEvent) => {
         e.stopPropagation();
         if (currentIndex > 0) {
-            setCurrentIndex(currentIndex - 1);
+            setViewedId(cards[currentIndex - 1].id);
+            setShowDetails(false);
         }
     };
 
